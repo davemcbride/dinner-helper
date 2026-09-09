@@ -25,6 +25,15 @@ CREATE TABLE IF NOT EXISTS history (
 );
 CREATE INDEX IF NOT EXISTS idx_history_meal ON history(meal_id);
 CREATE INDEX IF NOT EXISTS idx_history_on  ON history(served_on);
+
+CREATE TABLE IF NOT EXISTS plans (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    meal_id    INTEGER NOT NULL REFERENCES meals(id) ON DELETE CASCADE,
+    planned_on TEXT NOT NULL,                 -- ISO date (YYYY-MM-DD)
+    note       TEXT NOT NULL DEFAULT ''       -- for future 'eat out' / skip markers
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_plans_on  ON plans(planned_on);
+CREATE INDEX IF NOT EXISTS idx_plans_meal ON plans(meal_id);
 """
 
 

@@ -1,9 +1,11 @@
 """Dinner Helper - FastAPI backend.
 
 Run (from the repo root):
-    uvicorn app.main:app --host 0.0.0.0 --port 8000
+    python3 -m app.main --host 0.0.0.0 --port 8000 --ssl
 or simply:
-    python3 -m app.main --host 0.0.0.0 --port 8000
+    uvicorn app.main:app --host 0.0.0.0 --port 8000 \
+        --ssl-keyfile certs/dinner.dave.lan+2-key.pem \
+        --ssl-certfile certs/dinner.dave.lan-chain.pem
 """
 
 import argparse
@@ -51,6 +53,10 @@ class PatchMealIn(BaseModel):
     enabled: bool | None = None
 
 
+class PlanIn(BaseModel):
+    meal_id: int
+
+
 # --- helpers ---------------------------------------------------------------
 
 MEAL_FIELDS = """
@@ -60,8 +66,14 @@ m.id, m.name, m.aliases, m.enabled, m.flagged, m.flag_reasons, m.merge_hint,
 """
 
 
+MEAL_KEYS = (
+    "id", "name", "aliases", "enabled", "flagged", "flag_reasons",
+    "merge_hint", "count", "last_served",
+)
+
+
 def to_meal(row: sqlite3.Row) -> dict:
-    meal = dict(row)
+    meal = {k: row[k] for k in MEAL_KEYS}
     meal["aliases"] = json.loads(meal["aliases"] or "[]")
     meal["flag_reasons"] = json.loads(meal["flag_reasons"] or "[]")
     hint = json.loads(meal["merge_hint"]) if meal["merge_hint"] else None
@@ -385,6 +397,118 @@ def resolve_meal(meal_id: int, body: ResolveIn):
         conn.close()
 
 
+# --- upcoming week ---------------------------------------------------------
+
+
+def to_plan(row: sqlite3.Row) -> dict:
+    plan = {
+        "id": row["plan_id"],
+        "planned_on": row["planned_on"],
+        "note": row["note"],
+        "meal": to_meal(row),
+    }
+    return plan
+
+
+def get_plan(conn, planned_on: str) -> dict:
+    row = conn.execute(
+        "SELECT p.id AS plan_id, p.planned_on, p.note, "
+        f"{MEAL_FIELDS} "
+        "FROM plans p JOIN meals m ON m.id = p.meal_id "
+        "WHERE p.planned_on = ?",
+        (planned_on,),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(status_code=404, detail="no plan for that date")
+    return to_plan(row)
+
+
+@app.get("/api/plans")
+def list_plans(
+    start: str = Query(..., description="ISO date, inclusive"),
+    end: str = Query(..., description="ISO date, inclusive"),
+):
+    """Planned meals within [start, end] (inclusive)."""
+    conn = sqlite3.connect(db.DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        rows = conn.execute(
+            "SELECT p.id AS plan_id, p.planned_on, p.note, "
+            f"{MEAL_FIELDS} "
+            "FROM plans p JOIN meals m ON m.id = p.meal_id "
+            "WHERE p.planned_on BETWEEN ? AND ? "
+            "ORDER BY p.planned_on",
+            (start, end),
+        ).fetchall()
+        return {"plans": [to_plan(r) for r in rows]}
+    finally:
+        conn.close()
+
+
+@app.put("/api/plans/{planned_on}")
+def put_plan(planned_on: str, body: PlanIn):
+    """Assign a meal to a date (upsert)."""
+    conn = sqlite3.connect(db.DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        get_meal(conn, body.meal_id)
+        conn.execute(
+            "INSERT INTO plans (meal_id, planned_on) VALUES (?, ?) "
+            "ON CONFLICT(planned_on) DO UPDATE SET meal_id = excluded.meal_id, "
+            "note = excluded.note",
+            (body.meal_id, planned_on),
+        )
+        conn.commit()
+        return get_plan(conn, planned_on)
+    finally:
+        conn.close()
+
+
+@app.delete("/api/plans/{planned_on}")
+def delete_plan(planned_on: str):
+    """Clear the plan for a date."""
+    conn = sqlite3.connect(db.DB_PATH)
+    try:
+        n = conn.execute("DELETE FROM plans WHERE planned_on = ?", (planned_on,)).rowcount
+        conn.commit()
+    finally:
+        conn.close()
+    if not n:
+        raise HTTPException(status_code=404, detail="no plan for that date")
+    return {"ok": True}
+
+
+@app.post("/api/plans/{planned_on}/confirm")
+def confirm_plan(planned_on: str):
+    """Log a planned meal as eaten (only once the day has arrived) and clear it."""
+    if planned_on > date.today().isoformat():
+        raise HTTPException(status_code=400, detail="can't confirm a meal before its day")
+    conn = sqlite3.connect(db.DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        row = conn.execute(
+            "SELECT id, meal_id, note FROM plans WHERE planned_on = ?",
+            (planned_on,),
+        ).fetchone()
+        if row is None:
+            raise HTTPException(status_code=404, detail="no plan for that date")
+        with conn:
+            cur = conn.execute(
+                "INSERT INTO history (meal_id, served_on, note) VALUES (?, ?, ?)",
+                (row["meal_id"], planned_on, row["note"] or ""),
+            )
+            conn.execute("DELETE FROM plans WHERE id = ?", (row["id"],))
+        item = {
+            "id": cur.lastrowid,
+            "meal_id": row["meal_id"],
+            "served_on": planned_on,
+            "note": row["note"],
+        }
+        return {"logged": item, "meal": get_meal(conn, row["meal_id"])}
+    finally:
+        conn.close()
+
+
 # --- app / static -----------------------------------------------------------
 
 
@@ -402,9 +526,23 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Dinner Helper")
     ap.add_argument("--host", default="0.0.0.0")
     ap.add_argument("--port", type=int, default=8000)
+    ap.add_argument(
+        "--ssl",
+        action="store_true",
+        help="serve HTTPS with certs/ (mkcert: dinner.dave.lan)",
+    )
     args = ap.parse_args()
-    print(f"\n  Dinner Helper -> http://{args.host}:{args.port}\n")
-    uvicorn.run(app, host=args.host, port=args.port)
+
+    ssl_opts = {}
+    if args.ssl:
+        ssl_opts = {
+            "ssl_keyfile": ROOT / "certs" / "dinner.dave.lan+2-key.pem",
+            "ssl_certfile": ROOT / "certs" / "dinner.dave.lan-chain.pem",
+        }
+
+    scheme = "https" if args.ssl else "http"
+    print(f"\n  Dinner Helper -> {scheme}://{args.host}:{args.port}\n")
+    uvicorn.run(app, host=args.host, port=args.port, **ssl_opts)
 
 
 if __name__ == "__main__":

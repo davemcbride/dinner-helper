@@ -249,6 +249,67 @@ p { margin: 0 0 8px; }
 }
 .rev-card .btn-row { margin-top: 10px; }
 
+/* ---------- week ---------- */
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 2px;
+}
+.week-nav-btn {
+  min-width: 44px; min-height: 44px;
+  font-size: 18px;
+  padding: 0;
+}
+.week-head {
+  flex: 1;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.week-back {
+  margin: 0 auto;
+  font-size: 13px;
+  padding: 6px 14px;
+  min-height: 38px;
+}
+.week-list { display: flex; flex-direction: column; gap: 8px; }
+.week-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.week-row.today { border-color: var(--brand); }
+.week-day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 13px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+}
+.week-day:active { background: #f4eadf; }
+.week-dow { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.week-row.today .week-dow { color: var(--brand); }
+.week-date { color: var(--muted); }
+.week-meal { font-size: 16px; font-weight: 700; }
+.week-row.today .week-meal { color: var(--brand); }
+.week-meal.empty { color: var(--muted); font-size: 14px; }
+.week-confirm {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0 13px;
+  font-size: 13px;
+}
+
 /* ---------- sheet ---------- */
 .sheet { display: none; position: fixed; inset: 0; z-index: 50; }
 .sheet.open { display: flex; }

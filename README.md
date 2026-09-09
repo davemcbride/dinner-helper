@@ -18,10 +18,40 @@ python3 -m venv .venv
 
 # run the server on your network
 .venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+# or with the local HTTPS cert (see "HTTPS for your phone" below)
+.venv/bin/python -m app.main --host 0.0.0.0 --port 8000 --ssl
 ```
 
 Then open **`http://<your-pc-ip>:8000`** on both phones. Find your PC's IP
 with `ip addr` (something like `192.168.1.20`).
+
+## Local HTTPS (friendly hostname without SSL warnings)
+
+Chrome's HTTPS-First mode upgrades `http://dinner.dave.lan:8000` to https://,
+showing an SSL warning because the app runs plain HTTP. Fix it with mkcert:
+
+```bash
+# one-time, on the machine that runs the app
+sudo apt install mkcert
+mkcert -install                      # trust the local CA on this machine
+mkdir -p certs
+cd certs && mkcert dinner.dave.lan localhost
+# chain the leaf with the CA so phones can validate without extra fetches
+cat dinner.dave.lan.pem "$(mkcert -CAROOT)/rootCA.pem" > dinner.dave.lan-chain.pem
+```
+
+Then run with `python -m app.main ... --ssl` (as above) and open
+**`https://dinner.dave.lan:8000`**.
+
+On her Android phone, install the root CA once so Chrome trusts it:
+
+1. Copy `$( mkcert -CAROOT )/rootCA.pem` to the phone (email/SD card/etc).
+2. Settings → Security and privacy → More security settings → Install a
+   certificate → pick the file → OK (name it anything, e.g. "dinner dave").
+
+The cert names the hostname only, so keep using `dinner.dave.lan` on both
+phones — visiting by raw IP will still warn. Certs in `certs/` are
+git-ignored; re-run `mkcert` if they expire.
 
 ## What it does
 

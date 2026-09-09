@@ -62,6 +62,8 @@ const state = {
   review: [],         // flagged meals awaiting a decision
   duplicates: [],     // enabled meals with a suggested merge target
   recent: [],
+  plans: [],          // planned meals for the visible week
+  weekStart: null,    // ISO date of the Friday starting the visible week
   pickMode: "rare",
   currentPick: null,
   search: "",
@@ -74,7 +76,7 @@ const main = () => $("#app");
 // rendering
 // ---------------------------------------------------------------------------
 function render() {
-  const views = { pick: viewPick, meals: viewMeals, stats: viewStats, review: viewReview };
+  const views = { pick: viewPick, meals: viewMeals, stats: viewStats, review: viewReview, week: viewWeek };
   views[state.tab]();
 }
 
@@ -182,10 +184,9 @@ function renderMealsList() {
   list.forEach((m) => wrap.append(mealRow(m)));
 
   box.replaceChildren(
+    el("button", { class: "btn btn-primary btn-block", onclick: openAddSheet }, "+ Add a new meal"),
     el("div", { class: "count-line" }, `${list.length} shown`),
-    list.length ? wrap : el("div", { class: "empty" }, "No meals match."),
-    section("Add"),
-    el("button", { class: "btn btn-primary btn-block", onclick: openAddSheet }, "+ Add a new meal")
+    list.length ? wrap : el("div", { class: "empty" }, "No meals match.")
   );
 }
 
@@ -513,6 +514,214 @@ function mergePrompt(m) {
   ]));
 }
 
+// ------------------------------------------------ Week --------------------
+const WEEKDAY_NAMES = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const pad2 = (n) => String(n).padStart(2, "0");
+const iso = (d) => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const todayIso = () => iso(new Date());
+const shortDate = (s) => { const [, m, d] = s.split("-").map(Number); return `${d} ${MONTH_NAMES[m - 1]}`; };
+const weekdayName = (s) => { const [y, m, d] = s.split("-").map(Number); return WEEKDAY_NAMES[(new Date(y, m - 1, d).getDay() + 2) % 7]; };
+
+function isoAdd(isoStr, days) {
+  const [y, m, d] = isoStr.split("-").map(Number);
+  return iso(new Date(y, m - 1, d + days));
+}
+
+function startOfWeek() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const dow = (today.getDay() + 6) % 7;       // 0=Mon … 6=Sun
+  return isoAdd(iso(today), (4 - dow + 7) % 7); // the next Friday on/after today
+}
+
+const weekRange = (start) => Array.from({ length: 7 }, (_, i) => isoAdd(start, i));
+const canConfirm = (iso) => iso <= todayIso();
+
+async function loadPlans() {
+  const end = isoAdd(state.weekStart, 6);
+  const data = await api(`/api/plans?start=${state.weekStart}&end=${end}`);
+  state.plans = data.plans;
+  render();
+}
+
+function shiftWeek(days) {
+  state.weekStart = isoAdd(state.weekStart, days);
+  loadPlans();
+}
+
+function backToThisWeek() {
+  state.weekStart = startOfWeek();
+  loadPlans();
+}
+
+function viewWeek() {
+  if (!state.weekStart) state.weekStart = startOfWeek();
+  const today = todayIso();
+
+  const rows = weekRange(state.weekStart).map((day) => {
+    const plan = state.plans.find((p) => p.planned_on === day);
+    const confirmButton = plan && canConfirm(day)
+      ? el("button", {
+          class: "btn btn-sage week-confirm",
+          onclick: async () => {
+            if (!confirm(`Log ${plan.meal.name} as eaten for ${weekdayName(day)}?`)) return;
+            await confirmPlan(day);
+          },
+        }, "We had this")
+      : null;
+    return el("div", { class: "week-row" + (day === today ? " today" : "") }, [
+      el("button", { class: "week-day", onclick: () => openWeekSheet(day) }, [
+        el("div", { class: "week-dow" }, [
+          weekdayName(day) + " ",
+          el("span", { class: "week-date" }, shortDate(day)),
+        ]),
+        el("div", { class: "week-meal" + (plan ? "" : " empty") },
+          plan ? plan.meal.name : "Tap to plan"),
+      ]),
+      confirmButton,
+    ]);
+  });
+
+  const nav = el("div", { class: "week-nav" }, [
+    el("button", {
+      class: "btn btn-ghost week-nav-btn",
+      "aria-label": "Previous week",
+      onclick: () => shiftWeek(-7),
+    }, "‹"),
+    el("div", { class: "week-head" },
+      `Week of ${shortDate(state.weekStart)} – ${shortDate(isoAdd(state.weekStart, 6))}`),
+    el("button", {
+      class: "btn btn-ghost week-nav-btn",
+      "aria-label": "Next week",
+      onclick: () => shiftWeek(7),
+    }, "›"),
+  ]);
+
+  main().replaceChildren(
+    ...[
+      el("h1", {}, "Upcoming week"),
+      nav,
+      ...(state.weekStart !== startOfWeek()
+        ? [el("button", {
+            class: "btn btn-ghost week-back",
+            onclick: () => backToThisWeek(),
+          }, "Back to this week")]
+        : []),
+      el("div", { class: "week-list" }, rows),
+      section("How it works"),
+      el("p", { style: "color:var(--muted);font-size:14px;line-height:1.5" },
+        "Plan the week ahead, Friday to Thursday. Tap a day to assign a meal. " +
+        "Nothing counts as eaten until you confirm it here."),
+    ].filter(Boolean)
+  );
+}
+
+function fmtDay(iso) { return `${weekdayName(iso)} ${shortDate(iso)}`; }
+
+function openWeekSheet(day) {
+  const plan = state.plans.find((p) => p.planned_on === day);
+  const meal = plan ? plan.meal : null;
+  const input = el("input", {
+    class: "input",
+    list: "week-meals",
+    placeholder: "Search meals…",
+    value: meal ? meal.name : "",
+  });
+  const targets = el("datalist", { id: "week-meals" },
+    state.meals.map((x) => el("option", { value: x.name })));
+
+  let mode = state.pickMode;
+  const seg = el("div", { class: "seg", role: "group" });
+  [["rare", "Rare"], ["random", "Random"], ["favourite", "Favour"]].forEach(([m, label]) =>
+    seg.append(el("button", {
+      type: "button",
+      "aria-pressed": mode === m ? "true" : "false",
+      onclick: (e) => {
+        mode = m;
+        seg.querySelectorAll("button").forEach((b) =>
+          b.setAttribute("aria-pressed", b === e.currentTarget ? "true" : "false"));
+      },
+    }, label))
+  );
+
+  const actions = meal && canConfirm(day)
+    ? [el("div", { class: "btn-row" }, [
+        el("button", {
+          class: "btn btn-sage",
+          onclick: async () => {
+            if (!confirm(`Log ${meal.name} as eaten for ${fmtDay(day)}?`)) return;
+            await confirmPlan(day);
+          },
+        }, "We had this ✓"),
+      ])]
+    : [];
+
+  openSheet(el("div", {}, [
+    el("div", { class: "sheet-title" }, fmtDay(day)),
+    el("p", { class: "meta" },
+      meal ? `Currently: ${meal.name}${canConfirm(day) ? " — ready to confirm" : ""}` : "Nothing planned yet"),
+    section("Suggest one"),
+    el("p", { class: "meta", style: "margin:0 0 10px" }, "Already-planned meals are left out."),
+    el("div", { class: "btn-row", style: "gap:8px;flex-wrap:wrap" }, [
+      seg,
+      el("button", {
+        class: "btn btn-ghost",
+        onclick: async () => {
+          const plannedIds = state.plans
+            .filter((p) => p.planned_on !== day)
+            .map((p) => p.meal.id);
+          try {
+            const data = await api(`/api/pick?mode=${mode}&count=1&exclude=${plannedIds.join(",")}`);
+            input.value = data.picks[0].name;
+          } catch (e) {
+            toast(e.message === "no meals to choose from" ? "No candidates left" : e.message, true);
+          }
+        },
+      }, "Suggest"),
+    ]),
+    ...actions,
+    section("Pick a meal"),
+    input,
+    targets,
+    el("div", { class: "btn-row" }, [
+      el("button", {
+        class: "btn btn-primary",
+        onclick: async () => {
+          const target = state.meals.find((x) => x.name === input.value.trim());
+          if (!target) return toast("Pick a meal from the list", true);
+          await api(`/api/plans/${day}`, { method: "PUT", body: { meal_id: target.id } });
+          closeSheet();
+          toast(`${target.name} planned for ${fmtDay(day)}`);
+          await refresh();
+        },
+      }, "Plan this meal"),
+      meal
+        ? el("button", {
+            class: "btn btn-danger-ghost",
+            onclick: async () => {
+              await api(`/api/plans/${day}`, { method: "DELETE" });
+              closeSheet();
+              toast(`Cleared ${fmtDay(day)}`);
+              await refresh();
+            },
+          }, "Clear")
+        : null,
+    ]),
+  ]));
+}
+
+async function confirmPlan(day) {
+  const plan = state.plans.find((p) => p.planned_on === day);
+  try {
+    await api(`/api/plans/${day}/confirm`, { method: "POST" });
+    toast(`Confirmed — ${plan.meal.name} logged`);
+    await refresh();
+  } catch (e) {
+    toast(e.message, true);
+  }
+}
+
 // ------------------------------------------------ meta --------------------
 function metaHtml(m) {
   const bits = [];
@@ -537,16 +746,20 @@ function relDate(iso) {
 
 // ------------------------------------------------ refresh -----------------
 async function refresh(keepTab = true) {
-  const [meals, review, dups, recent] = await Promise.all([
+  if (!state.weekStart) state.weekStart = startOfWeek();
+  const weekEnd = isoAdd(state.weekStart, 6);
+  const [meals, review, dups, recent, plans] = await Promise.all([
     api("/api/meals?filter=all"),
     api("/api/meals?filter=flagged"),
     api("/api/meals?filter=duplicates"),
     api("/api/history/recent?limit=20"),
+    api(`/api/plans?start=${state.weekStart}&end=${weekEnd}`),
   ]);
   state.meals = meals.meals.filter((m) => !m.flagged);
   state.review = review.meals;
   state.duplicates = dups.meals;
   state.recent = recent.entries;
+  state.plans = plans.plans;
 
   if (state.currentPick && !state.meals.some((m) => m.id === state.currentPick.id))
     state.currentPick = null;
