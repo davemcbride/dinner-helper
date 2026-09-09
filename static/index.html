@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f2ea">
+  <title>Dinner Helper</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main id="app"></main>
+
+  <nav class="tabbar" role="tablist">
+    <button class="tab" data-tab="pick" role="tab" aria-selected="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <rect x="6" y="7" width="12" height="12" rx="2" fill="#fff" stroke="currentColor" stroke-width="2"/>
+        <circle cx="10" cy="10" r="1.2" fill="currentColor"/><circle cx="14" cy="12" r="1.2" fill="currentColor"/>
+        <rect x="7" y="5" width="4" height="3" fill="currentColor"/><rect x="13" y="5" width="4" height="3" fill="currentColor"/>
+      </svg>
+      <span>Pick</span>
+    </button>
+    <button class="tab" data-tab="meals" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M5 5h14v14h-14v-14" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M7 9h10M7 13h10" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span>Meals</span>
+    </button>
+    <button class="tab" data-tab="stats" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M5 19h2v-10h2v6h2v-8h2v11h2v-7h2" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>Stats</span>
+    </button>
+    <button class="tab" data-tab="review" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M12 4l4 6-4 12m-8 4l8 4" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+        <circle cx="12" cy="4" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+      </svg>
+      <span>Review</span>
+    </button>
+  </nav>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <div id="sheet" class="sheet">
+    <div class="sheet-scrim" onclick="closeSheet()"></div>
+    <div class="sheet-panel" role="dialog" aria-modal="true">
+      <button class="sheet-close" onclick="closeSheet()" aria-label="Close">×</button>
+      <div id="sheet-content"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

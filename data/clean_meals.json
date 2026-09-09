@@ -1,0 +1,3415 @@
+{
+  "generated": "2026-09-09",
+  "source": "/home/dmcbride/git/dinner-helper/docs/dinner_list.md",
+  "stats": {
+    "raw_entries": 343,
+    "distinct_meals": 244,
+    "flagged": 21,
+    "merge_hints": 4,
+    "high_confidence_merges": 2,
+    "aliases_captured": 43,
+    "total_occurrences": 343
+  },
+  "meals": [
+    {
+      "id": 1,
+      "name": "Air fryer salt and chili",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 29: Air fryer salt and chili"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 2,
+      "name": "asparagus eggs",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 34: asparagus eggs"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 3,
+      "name": "B and m Chicken curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 262: B and m Chicken curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 4,
+      "name": "Bacon carbonara",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 221: Bacon carbonara"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 5,
+      "name": "Bacon eggs sausages and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 130: Bacon eggs sausages and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 6,
+      "name": "Sun Ballyliffin",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "place name (ate out?)"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 172: Sun Ballyliffin"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 7,
+      "name": "BBQ sausages, burgers and chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 82: BBQ sausages, burgers and chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 8,
+      "name": "Beef casserole",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 261: Beef casserole"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 9,
+      "name": "Beef curry (balti)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 265: Beef curry (balti)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 10,
+      "name": "Beef curry rendang",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 255: Beef curry rendang"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 11,
+      "name": "Beef koftas, pitta and salad",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 297: Beef koftas, pitta and salad"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 12,
+      "name": "Sun beef ragu",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 102: Sun beef ragu"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 13,
+      "name": "Beef stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 22: Beef stew"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 14,
+      "name": "beef tomatoes and mex rice and chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 112: beef tomatoes and mex rice and chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 15,
+      "name": "Biryani",
+      "aliases": [
+        "Mon Biriani"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 124: Biryani",
+        "line 201: Mon Biriani",
+        "line 211: Biryani"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 16,
+      "name": "Breaded chicken Parmesan and spaghetti",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 42: Breaded chicken Parmesan and spaghetti"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 17,
+      "name": "Brocolli bake",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 142: Brocolli bake"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 18,
+      "name": "Burger and chips",
+      "aliases": [
+        "Friday burger and chips"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 71: Burger and chips",
+        "line 85: Friday burger and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 19,
+      "name": "Friday burgers",
+      "aliases": [
+        "Burgers"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 157: Friday burgers",
+        "line 185: Burgers"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 20,
+      "name": "Burgers Friday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 310: Burgers Friday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 21,
+      "name": "Burrito bowl",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 180: Burrito bowl"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 22,
+      "name": "Carbonara",
+      "aliases": [
+        "Thurs carbonara"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 4,
+      "source_entries": [
+        "line 59: Carbonara",
+        "line 74: Thurs carbonara",
+        "line 99: Carbonara",
+        "line 197: Carbonara"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 23,
+      "name": "Tuesday cashelmore",
+      "aliases": [
+        "Thursday cashelmore"
+      ],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "place name (ate out?)"
+      ],
+      "occurrences": 2,
+      "source_entries": [
+        "line 166: Tuesday cashelmore",
+        "line 176: Thursday cashelmore"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 24,
+      "name": "Cauliflower masala roast mint yogurt, spice wedges",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 27: Cauliflower masala roast mint yogurt, spice wedges"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 25,
+      "name": "Chicken bacon laurdons, creme frais, parmesan, cheddar, opinion, garlic, parsley and pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 214: Chicken bacon laurdons, creme frais, parmesan, cheddar, opinion, garlic, parsley and pasta",
+        "line 238: Chicken bacon laurdons, creme frais, parmesan, cheddar, opinion, garlic, parsley and pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 26,
+      "name": "Chicken biryani",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 258: Chicken biryani"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 27,
+      "name": "chicken breast and veg",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 101: chicken breast and veg"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 28,
+      "name": "Chicken burgers",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 267: Chicken burgers"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 29,
+      "name": "Friday chicken burgers and salad",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 69: Friday chicken burgers and salad"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 30,
+      "name": "Chicken chip shop curry and rice",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 304: Chicken chip shop curry and rice"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 31,
+      "name": "chicken and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 57: chicken and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 32,
+      "name": "Chicken chipshop curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 256: Chicken chipshop curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 33,
+      "name": "Chicken curry",
+      "aliases": [
+        "Thursday chicken curry"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 4,
+      "source_entries": [
+        "line 19: Chicken curry",
+        "line 168: Thursday chicken curry",
+        "line 312: Chicken curry",
+        "line 324: Chicken curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 34,
+      "name": "Chicken curry and rice",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 116: Chicken curry and rice"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 35,
+      "name": "Chicken curry slow cook",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 280: Chicken curry slow cook"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 36,
+      "name": "Chicken curry slow cook Friday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 292: Chicken curry slow cook Friday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 37,
+      "name": "chicken curry slow cooker noodles",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 33: chicken curry slow cooker noodles"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 38,
+      "name": "Chicken curry Thursday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 308: Chicken curry Thursday",
+        "line 315: Chicken curry Thursday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 39,
+      "name": "chicken curry, rice, peas  and nuts and onion",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 64: chicken curry, rice, peas  and nuts and onion"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 40,
+      "name": "Chicken fajitas",
+      "aliases": [
+        "chicken fajetas"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 44: Chicken fajitas",
+        "line 319: chicken fajetas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 41,
+      "name": "Chicken fried rice",
+      "aliases": [
+        "Monday chicken fried rice",
+        "Sat chicken fried rice",
+        "Wed chicken fried rice"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 11,
+      "source_entries": [
+        "line 17: Chicken fried rice",
+        "line 175: Wed chicken fried rice",
+        "line 183: Chicken fried rice",
+        "line 190: Monday chicken fried rice",
+        "line 199: Sat chicken fried rice",
+        "line 243: Chicken fried rice",
+        "line 275: Chicken fried rice",
+        "line 293: Chicken fried rice",
+        "line 299: Chicken fried rice",
+        "line 320: Chicken fried rice",
+        "line 331: Chicken fried rice"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 42,
+      "name": "Chicken goujons",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 100: Chicken goujons"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 43,
+      "name": "Chicken goujons and mash",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 226: Chicken goujons and mash",
+        "line 296: Chicken goujons and mash"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 44,
+      "name": "Chicken goujon and spuds",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 306: Chicken goujon and spuds"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 45,
+      "name": "Chicken parmesan with mozzarella",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 28: Chicken parmesan with mozzarella"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 46,
+      "name": "Chicken pie",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 51: Chicken pie",
+        "line 329: Chicken pie"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 47,
+      "name": "Chicken pie and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 327: Chicken pie and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 48,
+      "name": "Chicken pie and mash Mon",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 289: Chicken pie and mash Mon"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 49,
+      "name": "Chicken pie Monday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 321: Chicken pie Monday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 50,
+      "name": "Chicken shwarama fake away",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 5: Chicken shwarama fake away"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 51,
+      "name": "Chicken tacos Donal",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 212: Chicken tacos Donal"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 52,
+      "name": "Chicken try bake",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 316: Chicken try bake"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 53,
+      "name": "Chicken wrapped in bacon",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 252: Chicken wrapped in bacon"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 54,
+      "name": "Chicken wrapped in bacon wed",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 118: Chicken wrapped in bacon wed"
+      ],
+      "merge_hint": {
+        "into": 53,
+        "into_name": "Chicken wrapped in bacon",
+        "confidence": 0.923
+      }
+    },
+    {
+      "id": 55,
+      "name": "Chicken wraps",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 45: Chicken wraps"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 56,
+      "name": "chicken, spuds, pepper sauce",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 26: chicken, spuds, pepper sauce"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 57,
+      "name": "Chickpea masala",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 1: Chickpea masala"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 58,
+      "name": "Chilli",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 198: Chilli",
+        "line 210: Chilli",
+        "line 340: Chilli"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 59,
+      "name": "Chilli con carne",
+      "aliases": [
+        "Ch con carne",
+        "chilli con carne"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 125: Chilli con carne",
+        "line 300: Ch con carne",
+        "line 330: chilli con carne"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 60,
+      "name": "Chilli con carne with spuds",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 274: Chilli con carne with spuds"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 61,
+      "name": "Tuesday chilli slow cooker",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 84: Tuesday chilli slow cooker"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 62,
+      "name": "Chip shop curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 241: Chip shop curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 63,
+      "name": "Monday chippy or chicken goujons wrap",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 165: Monday chippy or chicken goujons wrap"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 64,
+      "name": "chips, eggs and sausages,",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 113: chips, eggs and sausages,"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 65,
+      "name": "Chips, tomatoes, bacon, beans, eggs",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 4: Chips, tomatoes, bacon, beans, eggs"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 66,
+      "name": "Chorizo pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 126: Chorizo pasta",
+        "line 244: Chorizo pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 67,
+      "name": "Chow mein eggs noodles",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 25: Chow mein eggs noodles"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 68,
+      "name": "Coddle",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 253: Coddle",
+        "line 343: Coddle"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 69,
+      "name": "Cottage pie",
+      "aliases": [
+        "Sun cottage pie"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 5,
+      "source_entries": [
+        "line 56: Cottage pie",
+        "line 159: Sun cottage pie",
+        "line 215: Cottage pie",
+        "line 222: Cottage pie",
+        "line 245: Cottage pie"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 70,
+      "name": "Creamy garlic chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 2: Creamy garlic chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 71,
+      "name": "Creamy Tomato Chicken Risoni (Orzo)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 3: Creamy Tomato Chicken Risoni (Orzo)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 72,
+      "name": "Dave's big beef stew TM",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 8: Dave's big beef stew TM"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 73,
+      "name": "Dhal",
+      "aliases": [
+        "Dahl"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 21: Dhal",
+        "line 133: Dahl"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 74,
+      "name": "Doherty stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 35: Doherty stew"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 75,
+      "name": "Doherty's mince stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 150: Doherty's mince stew",
+        "line 283: Doherty's mince stew",
+        "line 288: Doherty's mince stew"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 76,
+      "name": "Doherty's stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 269: Doherty's stew"
+      ],
+      "merge_hint": {
+        "into": 74,
+        "into_name": "Doherty stew",
+        "confidence": 0.923
+      }
+    },
+    {
+      "id": 77,
+      "name": "Dohertys mince stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 208: Dohertys mince stew"
+      ],
+      "merge_hint": {
+        "into": 75,
+        "into_name": "Doherty's mince stew",
+        "confidence": 0.974
+      }
+    },
+    {
+      "id": 78,
+      "name": "Dronal's fajetas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 81: Dronal's fajetas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 79,
+      "name": "Friday egg salad each with tortilla chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 170: Friday egg salad each with tortilla chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 80,
+      "name": "Enchiladas",
+      "aliases": [
+        "Enchilladas",
+        "Friday enchiladas",
+        "Wed enchiladas",
+        "enchiladas"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 8,
+      "source_entries": [
+        "line 106: Wed enchiladas",
+        "line 152: enchiladas",
+        "line 169: Friday enchiladas",
+        "line 177: Friday enchiladas",
+        "line 263: Enchiladas",
+        "line 268: Enchiladas",
+        "line 272: Enchiladas",
+        "line 337: Enchilladas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 81,
+      "name": "Fajetas",
+      "aliases": [
+        "Friday fajetas"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 4,
+      "source_entries": [
+        "line 120: Friday fajetas",
+        "line 209: Fajetas",
+        "line 236: Fajetas",
+        "line 279: Fajetas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 82,
+      "name": "Fajetas oven cooked",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 143: Fajetas oven cooked"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 83,
+      "name": "Filled soda",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "Looks like a typo / not a meal"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 23: Filled soda"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 84,
+      "name": "Friday fish fingers or chicken and wrap it go out for dinner",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "eating out / trip entry",
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 206: Friday fish fingers or chicken and wrap it go out for dinner"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 85,
+      "name": "Fish fingers, spuds and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 301: Fish fingers, spuds and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 86,
+      "name": "Fish and spuds and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 138: Fish and spuds and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 87,
+      "name": "Fish and spuds l",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 217: Fish and spuds l"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 88,
+      "name": "Fish, beans, spuds",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 328: Fish, beans, spuds"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 89,
+      "name": "Friday flat bread and ?",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 108: Friday flat bread and ?"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 90,
+      "name": "Frozen dinner",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "ready meal / snack / party food"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 182: Frozen dinner"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 91,
+      "name": "Friday fry and chips",
+      "aliases": [
+        "Friday fry with chips",
+        "Fry with chips"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 75: Friday fry and chips",
+        "line 94: Friday fry with chips",
+        "line 131: Fry with chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 92,
+      "name": "Fry with chips and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 14: Fry with chips and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 93,
+      "name": "Garlic chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 132: Garlic chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 94,
+      "name": "Ham waffles and eggs",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 188: Ham waffles and eggs"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 95,
+      "name": "Hand made pizzas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 250: Hand made pizzas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 96,
+      "name": "Home made Chicken goujons",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 284: Home made Chicken goujons"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 97,
+      "name": "home made pizza",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 58: home made pizza"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 98,
+      "name": "home-made veggie mayflower curry and rice",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 98: home-made veggie mayflower curry and rice"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 99,
+      "name": "Honey garlic chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 123: Honey garlic chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 100,
+      "name": "hot dog and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 54: hot dog and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 101,
+      "name": "Hot dogs",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 10: Hot dogs"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 102,
+      "name": "http://amp.timeinc.net/myrecipes/recipe/vegetarian-burrito-bowls",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "URL, not a meal"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 196: http://amp.timeinc.net/myrecipes/recipe/vegetarian-burrito-bowls"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 103,
+      "name": "Indian curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 276: Indian curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 104,
+      "name": "Indian slow cooked chicken curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 270: Indian slow cooked chicken curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 105,
+      "name": "Thur John",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 9: Thur John"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 106,
+      "name": "Katsu curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 229: Katsu curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 107,
+      "name": "Lasagne",
+      "aliases": [
+        "Sun lasagne"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 5,
+      "source_entries": [
+        "line 164: Sun lasagne",
+        "line 216: Lasagne",
+        "line 224: Lasagne",
+        "line 242: Lasagne",
+        "line 254: Lasagne"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 108,
+      "name": "Lasagne mon",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 286: Lasagne mon"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 109,
+      "name": "Lasagne ThuThursdsaayy",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 291: Lasagne ThuThursdsaayy"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 110,
+      "name": "Lemon Orzo Salad With Feta and chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 24: Lemon Orzo Salad With Feta and chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 111,
+      "name": "Mac and cheese",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 50: Mac and cheese",
+        "line 179: Mac and cheese"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 112,
+      "name": "Make Spaghetti and meatballs balls",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 259: Make Spaghetti and meatballs balls"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 113,
+      "name": "Make special mince stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 260: Make special mince stew"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 114,
+      "name": "Monday Malin",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "place name (ate out?)"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 173: Monday Malin"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 115,
+      "name": "marinated tandoori chicken, rice, naan bread, mango chutney",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 237: marinated tandoori chicken, rice, naan bread, mango chutney"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 116,
+      "name": "Tues masaman curry and rice freezer",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 80: Tues masaman curry and rice freezer"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 117,
+      "name": "Mash and sausages and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 235: Mash and sausages and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 118,
+      "name": "Meat balls",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 77: Meat balls",
+        "line 178: Meat balls"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 119,
+      "name": "Meatballs and bread Wednesday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 323: Meatballs and bread Wednesday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 120,
+      "name": "Meatballs and spaghetti",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 15: Meatballs and spaghetti"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 121,
+      "name": "Meat balls and spaghetti Wednesday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 314: Meat balls and spaghetti Wednesday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 122,
+      "name": "Messy midweek pasta (oharibeavis)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 32: Messy midweek pasta (oharibeavis)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 123,
+      "name": "microwave dinners",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "ready meal / snack / party food"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 48: microwave dinners"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 124,
+      "name": "Sunday night chips or boiled eggs",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 239: Sunday night chips or boiled eggs"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 125,
+      "name": "Omlette and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 298: Omlette and chips",
+        "line 303: Omlette and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 126,
+      "name": "Omlette and chips Thursday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 322: Omlette and chips Thursday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 127,
+      "name": "Omlette and chips/waffles",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 294: Omlette and chips/waffles"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 128,
+      "name": "oven based fajetas",
+      "aliases": [
+        "Oven based fajetas"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 158: oven based fajetas",
+        "line 163: Oven based fajetas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 129,
+      "name": "Oven based spag bolognese",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 207: Oven based spag bolognese"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 130,
+      "name": "Oven cooked spag bol and tortilla chopped up",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 139: Oven cooked spag bol and tortilla chopped up"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 131,
+      "name": "Oven fajetas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 194: Oven fajetas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 132,
+      "name": "Party food",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "ready meal / snack / party food"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 325: Party food"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 133,
+      "name": "Monday pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 154: Monday pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 134,
+      "name": "Pasta bake",
+      "aliases": [
+        "Sat pasta bake",
+        "Thursday pasta bake"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 6,
+      "source_entries": [
+        "line 107: Thursday pasta bake",
+        "line 171: Sat pasta bake",
+        "line 203: Pasta bake",
+        "line 218: Pasta bake",
+        "line 230: Pasta bake",
+        "line 257: Pasta bake"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 135,
+      "name": "Thurs pasta bake and bread",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 88: Thurs pasta bake and bread"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 136,
+      "name": "Thursday pasta bake no meat",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 205: Thursday pasta bake no meat"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 137,
+      "name": "Pasta garlic cream sauce",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 13: Pasta garlic cream sauce"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 138,
+      "name": "Pasta A Limone",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 46: Pasta A Limone"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 139,
+      "name": "Pasta sauce pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 246: Pasta sauce pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 140,
+      "name": "Pizza",
+      "aliases": [
+        "pizza"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 5,
+      "source_entries": [
+        "line 65: Pizza",
+        "line 147: pizza",
+        "line 220: Pizza",
+        "line 317: Pizza",
+        "line 335: Pizza"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 141,
+      "name": "sat or pizza - enchiladas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 96: sat or pizza - enchiladas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 142,
+      "name": "Qesaedela",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 334: Qesaedela"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 143,
+      "name": "Ragu",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 122: Ragu"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 144,
+      "name": "ready cooked chicken tikka masala",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "ready meal / snack / party food"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 78: ready cooked chicken tikka masala"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 145,
+      "name": "Ready meal",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "ready meal / snack / party food"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 219: Ready meal"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 146,
+      "name": "rengdeng co milk and chopped tomatoes",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 110: rengdeng co milk and chopped tomatoes"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 147,
+      "name": "Rissoto",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 18: Rissoto",
+        "line 70: Rissoto",
+        "line 342: Rissoto"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 148,
+      "name": "Rissoto with chorizo",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 282: Rissoto with chorizo",
+        "line 311: Rissoto with chorizo"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 149,
+      "name": "Rissoto with Passat and chorizo",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 309: Rissoto with Passat and chorizo"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 150,
+      "name": "Rissoto with sweet potato Tues",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 307: Rissoto with sweet potato Tues"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 151,
+      "name": "Roast Chicken",
+      "aliases": [
+        "Sun roast chicken"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 137: Roast Chicken",
+        "line 189: Sun roast chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 152,
+      "name": "Roast chicken with banquets",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 38: Roast chicken with banquets"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 153,
+      "name": "Wed roast ham",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 7: Wed roast ham"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 154,
+      "name": "Rogan Josh beef slow cooked and rice",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 141: Rogan Josh beef slow cooked and rice"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 155,
+      "name": "Rogan Josh and veg",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 121: Rogan Josh and veg"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 156,
+      "name": "salad and chicken goujons",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 52: salad and chicken goujons"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 157,
+      "name": "Salad and chicken strips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 55: Salad and chicken strips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 158,
+      "name": "Friday salt and chilli chicken",
+      "aliases": [
+        "Salt and chilli chicken"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 79: Friday salt and chilli chicken",
+        "line 184: Salt and chilli chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 159,
+      "name": "Salt and chil or frozen pizza",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 204: Salt and chil or frozen pizza"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 160,
+      "name": "Friday salt and chilli Noodles",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 193: Friday salt and chilli Noodles"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 161,
+      "name": "Sausage carbonara",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 302: Sausage carbonara",
+        "line 305: Sausage carbonara"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 162,
+      "name": "Sausage casserole",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 114: Sausage casserole"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 163,
+      "name": "Sausage casserole need purple onion and big peppers",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 104: Sausage casserole need purple onion and big peppers"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 164,
+      "name": "Sausage casserole need purple onion and carrots",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 115: Sausage casserole need purple onion and carrots"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 165,
+      "name": "Sausage and mash",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 278: Sausage and mash",
+        "line 285: Sausage and mash"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 166,
+      "name": "Sausage pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 295: Sausage pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 167,
+      "name": "Sausage tomato soup spaghetti",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 318: Sausage tomato soup spaghetti"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 168,
+      "name": "Sausage.mash and gravy",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 271: Sausage.mash and gravy"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 169,
+      "name": "Sausages beans and mash",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 144: Sausages beans and mash"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 170,
+      "name": "Sausages beans and mash (peas)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 36: Sausages beans and mash (peas)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 171,
+      "name": "sausages beans and spudd",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 93: sausages beans and spudd"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 172,
+      "name": "Sausages gravy spuds",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 266: Sausages gravy spuds"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 173,
+      "name": "Sausages and Mash and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 12: Sausages and Mash and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 174,
+      "name": "Sausages mash and gravy",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 213: Sausages mash and gravy"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 175,
+      "name": "Simple tomato sauce and chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 181: Simple tomato sauce and chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 176,
+      "name": "Slow cook beef rangdang",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 247: Slow cook beef rangdang"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 177,
+      "name": "Slow cook chicken curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 287: Slow cook chicken curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 178,
+      "name": "Tuesday slow cook ham and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 66: Tuesday slow cook ham and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 179,
+      "name": "Slow cooked chicken curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 151: Slow cooked chicken curry"
+      ],
+      "merge_hint": {
+        "into": 177,
+        "into_name": "Slow cook chicken curry",
+        "confidence": 0.958
+      }
+    },
+    {
+      "id": 180,
+      "name": "Thursday  slow cooked chicken fajetas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 156: Thursday  slow cooked chicken fajetas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 181,
+      "name": "slow cooked chicken tikka masala",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 63: slow cooked chicken tikka masala"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 182,
+      "name": "slow cooked chilli",
+      "aliases": [
+        "Tues slow cooked chilli",
+        "Tuesday slow cooked chilli"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 4,
+      "source_entries": [
+        "line 30: slow cooked chilli",
+        "line 40: slow cooked chilli",
+        "line 72: Tuesday slow cooked chilli",
+        "line 89: Tues slow cooked chilli"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 183,
+      "name": "slow cooked curry masala",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 53: slow cooked curry masala"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 184,
+      "name": "Slow cooked Doherty's stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 127: Slow cooked Doherty's stew"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 185,
+      "name": "Slow cooked ham and spuds apple sauce",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 187: Slow cooked ham and spuds apple sauce"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 186,
+      "name": "Slow cooked ham, waffles or curley fries with eggs",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 277: Slow cooked ham, waffles or curley fries with eggs"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 187,
+      "name": "Slow cooked meat balls",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 248: Slow cooked meat balls"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 188,
+      "name": "Slow cooked mince and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 146: Slow cooked mince and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 189,
+      "name": "slow cooked stew or chorizo past",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 62: slow cooked stew or chorizo past"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 190,
+      "name": "Slow cooked Thai curry and rice",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 162: Slow cooked Thai curry and rice"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 191,
+      "name": "slow cooker sausages, beans, peppers and mash",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 11: slow cooker sausages, beans, peppers and mash"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 192,
+      "name": "Slow cooker spaghetti Bolognese",
+      "aliases": [
+        "Slow cooker spag bol",
+        "Thursday slow cooker spag bol",
+        "Tuesday slow cooker spag bol"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 4,
+      "source_entries": [
+        "line 174: Tuesday slow cooker spag bol",
+        "line 192: Thursday slow cooker spag bol",
+        "line 195: Slow cooker spag bol",
+        "line 240: Slow cooker spaghetti Bolognese"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 193,
+      "name": "Sounds and stew (from freezer)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 326: Sounds and stew (from freezer)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 194,
+      "name": "Spag bol",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 160: Spag bol",
+        "line 341: Spag bol"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 195,
+      "name": "Spaghetti Bolognese (made from day before)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 281: Spaghetti Bolognese (made from day before)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 196,
+      "name": "Spaghetti and meatballs",
+      "aliases": [
+        "Or  spaghetti and meat balls",
+        "Spaghetti and meat balls",
+        "Thur Spaghetti and meat balls",
+        "Wednesday  spaghetti and meat balls"
+      ],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 5,
+      "source_entries": [
+        "line 39: Spaghetti and meat balls",
+        "line 60: Spaghetti and meatballs",
+        "line 68: Thur Spaghetti and meat balls",
+        "line 83: Or  spaghetti and meat balls",
+        "line 86: Wednesday  spaghetti and meat balls"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 197,
+      "name": "Spanish chicken -chicken thigh, chorizo, oregano, peppers, sweet peppers, red onion, potato, orange juice and zest",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 336: Spanish chicken -chicken thigh, chorizo, oregano, peppers, sweet peppers, red onion, potato, orange juice and zest"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 198,
+      "name": "Spicy beef (Karen weigh to go)",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 16: Spicy beef (Karen weigh to go)"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 199,
+      "name": "Spicy beef bake",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 31: Spicy beef bake"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 200,
+      "name": "Wed spuds and beans and fish",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 73: Wed spuds and beans and fish"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 201,
+      "name": "Spuds and brisket",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 37: Spuds and brisket"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 202,
+      "name": "Spuds and casserole meat carrots and gravy and peas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 233: Spuds and casserole meat carrots and gravy and peas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 203,
+      "name": "Spuds and chicken and bacon",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 161: Spuds and chicken and bacon"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 204,
+      "name": "Spuds chicken and bacon and cheese",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 140: Spuds chicken and bacon and cheese"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 205,
+      "name": "Wed spuds and chicken breaded",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 155: Wed spuds and chicken breaded"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 206,
+      "name": "Spuds and chicken and broccoli",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 145: Spuds and chicken and broccoli"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 207,
+      "name": "spuds fish",
+      "aliases": [
+        "Spuds and fish",
+        "Wed spuds and fish",
+        "Wednesday spuds fish"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 4,
+      "source_entries": [
+        "line 87: spuds fish",
+        "line 90: Wednesday spuds fish",
+        "line 167: Wed spuds and fish",
+        "line 251: Spuds and fish"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 208,
+      "name": "Wed  Spuds and fish or chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 191: Wed  Spuds and fish or chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 209,
+      "name": "Spuds and fish fingers",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 225: Spuds and fish fingers"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 210,
+      "name": "Spuds and fish and veg Wednesday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 290: Spuds and fish and veg Wednesday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 211,
+      "name": "Wednesday spuds and ham",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 67: Wednesday spuds and ham"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 212,
+      "name": "Wed spuds and meat",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 149: Wed spuds and meat"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 213,
+      "name": "Spuds and mince and beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 128: Spuds and mince and beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 214,
+      "name": "Tues spuds oven baked chicken and vegetables",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 105: Tues spuds oven baked chicken and vegetables"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 215,
+      "name": "Spuds and sausages",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 3,
+      "source_entries": [
+        "line 136: Spuds and sausages",
+        "line 186: Spuds and sausages",
+        "line 234: Spuds and sausages"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 216,
+      "name": "Spuds and sausages and broccoli",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 41: Spuds and sausages and broccoli"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 217,
+      "name": "Spuds and sausages Thursday",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 119: Spuds and sausages Thursday"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 218,
+      "name": "Wed spuds and Sausages and veg",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 202: Wed spuds and Sausages and veg"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 219,
+      "name": "Steak pie",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 49: Steak pie"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 220,
+      "name": "Sun steaks",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 153: Sun steaks"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 221,
+      "name": "steaks and chips",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 91: steaks and chips"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 222,
+      "name": "Stew",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 227: Stew",
+        "line 339: Stew"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 223,
+      "name": "Stew with beans",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 111: Stew with beans"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 224,
+      "name": "Stir fry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 264: Stir fry",
+        "line 273: Stir fry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 225,
+      "name": "Stuffed peppers and chicken",
+      "aliases": [
+        "stuffed peppers and chicken"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 43: Stuffed peppers and chicken",
+        "line 47: stuffed peppers and chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 226,
+      "name": "Stuffed peppers and rice and steak",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 61: Stuffed peppers and rice and steak"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 227,
+      "name": "Stuffed tomatoes",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 129: Stuffed tomatoes",
+        "line 134: Stuffed tomatoes"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 228,
+      "name": "Sun Sunday roast",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 200: Sun Sunday roast"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 229,
+      "name": "Sweet potato rissoto",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 313: Sweet potato rissoto"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 230,
+      "name": "Tacos",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 6: Tacos",
+        "line 249: Tacos"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 231,
+      "name": "Tandoori chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 231: Tandoori chicken",
+        "line 232: Tandoori chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 232,
+      "name": "Thai red curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 228: Thai red curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 233,
+      "name": "Tika chicken",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 338: Tika chicken"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 234,
+      "name": "Tomato soup",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 332: Tomato soup"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 235,
+      "name": "Tomato soup pasta Mon",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 117: Tomato soup pasta Mon"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 236,
+      "name": "Tortillas",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 333: Tortillas"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 237,
+      "name": "Veg pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 223: Veg pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 238,
+      "name": "Sun vegetable bake or Mac and cheese or veg lasagne",
+      "aliases": [],
+      "enabled": true,
+      "flagged": true,
+      "flag_reasons": [
+        "multiple options ('or' / '?')"
+      ],
+      "occurrences": 1,
+      "source_entries": [
+        "line 148: Sun vegetable bake or Mac and cheese or veg lasagne"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 239,
+      "name": "Thurs vegetable pasta",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 103: Thurs vegetable pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 240,
+      "name": "Monday veggie burgers",
+      "aliases": [
+        "Veggie burgers"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 97: Monday veggie burgers",
+        "line 135: Veggie burgers"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 241,
+      "name": "veggie mayflower curry",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 95: veggie mayflower curry"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 242,
+      "name": "veggie pasta",
+      "aliases": [
+        "Thurs veggie pasta"
+      ],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 2,
+      "source_entries": [
+        "line 76: veggie pasta",
+        "line 92: Thurs veggie pasta"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 243,
+      "name": "Veggie tika cream. Amazing",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 109: Veggie tika cream. Amazing"
+      ],
+      "merge_hint": null
+    },
+    {
+      "id": 244,
+      "name": "Wrap",
+      "aliases": [],
+      "enabled": true,
+      "flagged": false,
+      "flag_reasons": [],
+      "occurrences": 1,
+      "source_entries": [
+        "line 20: Wrap"
+      ],
+      "merge_hint": null
+    }
+  ]
+}
