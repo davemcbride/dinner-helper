@@ -1,5 +1,9 @@
 # Remote HTTPS + Auth via Cloudflare Tunnel (dinner.davemcbride.org)
 
+**Status: complete (2026-09-12).** Live at `https://dinner.davemcbride.org`,
+gated by Cloudflare Access (one-time PIN). See checklist at the end for the
+implementation record.
+
 ## Goal
 
 Make Dinner Helper reachable over the **public internet** at
@@ -110,10 +114,28 @@ That's the whole auth story: emailed code = our password, zero code in app.
 
 ## To pick up later (checklist)
 
-1. [ ] Add `dinner` public hostname + `HTTP 192.168.1.159:8000` to the tunnel
-2. [ ] Add `dinner.davemcbride.org` as a Self-hosted Access application
-3. [ ] Policy: Allow an Emails rule containing both our addresses, OTP auth
-4. [ ] Test from a phone on mobile data (off-LAN): OTP email arrives, app loads
-5. [ ] `curl -sI https://dinner.davemcbride.org` → expect 302 when logged out
+1. [x] Add `dinner` public hostname + `HTTP 192.168.1.159:8000` to the tunnel
+     (done via Routes → Add route → Published application; CNAME
+     `dbcd61db-…​.cfargotunnel.com` created). Note: `cloudflared` was found
+     stopped on the host and had to be started (`docker compose up -d` in
+     `home-lab/cloudflared`) before the tunnel connected.
+2. [x] Add `dinner.davemcbride.org` as a Self-hosted Access application
+     (UI: Access controls → Applications → Create new application →
+     Self-hosted and private). Creating the policy alone does nothing —
+     it must be **applied to the application**.
+3. [x] Policy: Allow an Emails rule (+ One-time PIN auth). One-time PIN IdP
+     created and enabled on the app (login page shows "Send login code").
+     Only one address is in the allow rule so far; add the second when needed.
+4. [x] Test from a phone on mobile data (off-LAN): OTP email arrives, app loads
+     Gotcha: the LAN resolver (Technitium at 192.168.1.159) may hold a **cached
+     NXDOMAIN** from before the tunnel route existed, giving
+     `ERR_NAME_NOT_RESOLVED` on devices that use it. Flush Technitium's cache
+     (web UI → Cache, or `api/cache/flush`) and toggle Wi-Fi/airplane mode on
+     the phone to drop its own cached negative.
+     Separately: `requests.davemcbride.org` no longer resolves and no seerr
+     container exists on the host — the tunnel now serves only `dinner`.
+5. [x] `curl -sI https://dinner.davemcbride.org` → 302 to
+     `…cloudflareaccess.com/cdn-cgi/access/login/dinner.davemcbride.org` when
+     logged out
 6. [x] Update README quick-start / hosting notes to document this
      access method in place of (or alongside) LAN-direct

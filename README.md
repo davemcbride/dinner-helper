@@ -63,12 +63,13 @@ Zero Trust tunnel from the `home-lab` repo:
 - **`https://dinner.davemcbride.org`** → Cloudflare edge (trusted HTTPS) →
   cloudflared → this app at `192.168.1.159:8000`.
 - Cloudflare **Access** gates the hostname behind an emailed one-time PIN
-  limited to our two addresses, so no login exists in the app itself.
+  limited to approved addresses, so no login exists in the app itself.
 - Nothing in this repo changes: the server stays plain HTTP on `:8000`; the
   tunnel hostname and Access policy are configured in the CF dashboard.
 
-Setup details live in `docs/ideas/cloudflare-tunnel-remote.md`. On the LAN the
-direct `http://192.168.1.159:8000` (or `dinner.dave.lan`) still works as-is.
+Setup details live in `docs/ideas/completed/cloudflare-tunnel-remote.md`. On
+the LAN the direct `http://192.168.1.159:8000` (or `dinner.dave.lan`) still
+works as-is.
 
 ## What it does
 
