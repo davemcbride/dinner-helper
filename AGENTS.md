@@ -55,3 +55,8 @@ edits made in the app.
 - PATCH rename updates `name` only — aliases belong to a separate column.
 - Serving surprises: no auth by design (LAN only), DB lives at
   `data/dinners.db` and must exist before the server is useful.
+- Backend changes need a server restart. `uvicorn` runs without `--reload`, so
+  a long-running process keeps serving old Python (e.g. a new route 404s) even
+  though `static/` is re-read from disk each request. This shows up as the UI
+  failing only on the first load, when `refresh()` fires all `/api/*` calls in
+  one `Promise.all`. Restart after pulling or editing `app/`.
