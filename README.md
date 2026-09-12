@@ -23,7 +23,8 @@ python3 -m venv .venv
 ```
 
 Then open **`http://<your-pc-ip>:8000`** on both phones. Find your PC's IP
-with `ip addr` (something like `192.168.1.20`).
+with `ip addr` (something like `192.168.1.20`). For access away from home, use
+the Cloudflare Tunnel URL — see "Remote access from anywhere" below.
 
 ## Local HTTPS (friendly hostname without SSL warnings)
 
@@ -52,6 +53,22 @@ On her Android phone, install the root CA once so Chrome trusts it:
 The cert names the hostname only, so keep using `dinner.dave.lan` on both
 phones — visiting by raw IP will still warn. Certs in `certs/` are
 git-ignored; re-run `mkcert` if they expire.
+
+## Remote access from anywhere (Cloudflare Tunnel)
+
+The LAN URL only works at home (the network is behind CGNAT, so port-forwards
+aren't an option). To reach the app off-LAN we use the existing Cloudflare
+Zero Trust tunnel from the `home-lab` repo:
+
+- **`https://dinner.davemcbride.org`** → Cloudflare edge (trusted HTTPS) →
+  cloudflared → this app at `192.168.1.159:8000`.
+- Cloudflare **Access** gates the hostname behind an emailed one-time PIN
+  limited to our two addresses, so no login exists in the app itself.
+- Nothing in this repo changes: the server stays plain HTTP on `:8000`; the
+  tunnel hostname and Access policy are configured in the CF dashboard.
+
+Setup details live in `docs/ideas/cloudflare-tunnel-remote.md`. On the LAN the
+direct `http://192.168.1.159:8000` (or `dinner.dave.lan`) still works as-is.
 
 ## What it does
 
@@ -90,9 +107,12 @@ from zero.
 
 ## Hosting notes
 
-- Built for a home LAN, so there's deliberately no login. Anyone who can
-  reach `http://<ip>:8000` on your network can edit the list.
-- If you put it on a public server instead, put a PIN/proxy in front of it.
+- Built for a home LAN, so there's deliberately no login in the app. On the LAN
+  anyone who can reach `http://<ip>:8000` can edit the list.
+- Off-LAN access goes through Cloudflare Tunnel + Access (emailed one-time
+  PIN), so the public URL is authenticated at the edge — see "Remote access
+  from anywhere" above.
+- If you expose it some other way, put a PIN/proxy in front of it.
 - Data lives in `data/dinners.db` – back it up / copy it between machines.
 
 ## Layout

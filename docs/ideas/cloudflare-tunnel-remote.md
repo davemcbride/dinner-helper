@@ -115,5 +115,5 @@ That's the whole auth story: emailed code = our password, zero code in app.
 3. [ ] Policy: Allow an Emails rule containing both our addresses, OTP auth
 4. [ ] Test from a phone on mobile data (off-LAN): OTP email arrives, app loads
 5. [ ] `curl -sI https://dinner.davemcbride.org` → expect 302 when logged out
-6. [ ] Update README quick-start / hosting notes to document this
+6. [x] Update README quick-start / hosting notes to document this
      access method in place of (or alongside) LAN-direct
