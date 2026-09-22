@@ -22,11 +22,35 @@ R2_REMOTE="r2:dinner-helper-backup"   # rclone remote + bucket
 DATE=$(date +%Y%m%d-%H%M%S)
 BACKUP_NAME="dinners-$DATE.db.gz"
 KEEP_LOCAL_DAYS=15
-KEEP_CLOUD_DAYS=30
+KEEP_CLOUD_FILES=3
 LOG_FILE="$REPO_DIR/backup.log"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+# R2 lifecycle rules expire objects by age only; there is no "keep the newest N
+# objects" rule, and setting them needs a bucket-admin token rather than the
+# object-scoped one rclone uses. So the count cap is enforced here: list the
+# bucket, and delete everything past the newest $KEEP_CLOUD_FILES.
+prune_cloud() {
+    local excess old
+    excess=$(rclone lsf "$R2_REMOTE/" --files-only --include "dinners-*.db.gz" \
+        | sort -r | tail -n "+$((KEEP_CLOUD_FILES + 1))")
+
+    if [ -z "$excess" ]; then
+        log "Cloud cleanup: newest $KEEP_CLOUD_FILES kept, nothing to remove"
+        return 0
+    fi
+
+    while IFS= read -r old; do
+        [ -n "$old" ] || continue
+        if rclone deletefile "$R2_REMOTE/$old"; then
+            log "Removed old cloud backup: $old"
+        else
+            log "WARNING: could not remove old cloud backup: $old"
+        fi
+    done <<< "$excess"
 }
 
 log "=== Starting Dinner Helper backup ==="
@@ -78,9 +102,7 @@ if command -v rclone &> /dev/null && rclone listremotes | grep -q "^r2:$"; then
         log "WARNING: cloud upload failed, local backup is safe"
     fi
 
-    log "Cleaning up cloud backups older than $KEEP_CLOUD_DAYS days..."
-    rclone delete "$R2_REMOTE/" --min-age "${KEEP_CLOUD_DAYS}d" --include "dinners-*.db.gz" || \
-        log "WARNING: cloud cleanup failed"
+    prune_cloud
 else
     log "WARNING: rclone or the r2: remote is unavailable, skipping cloud backup"
 fi
@@ -92,6 +114,6 @@ log "=== Backup summary ==="
 log "Local backups: $(find "$LOCAL_BACKUP_DIR" -name 'dinners-*.db.gz' | wc -l) files in $LOCAL_BACKUP_DIR"
 if command -v rclone &> /dev/null && rclone listremotes | grep -q "^r2:$"; then
     CLOUD_COUNT=$(rclone lsf "$R2_REMOTE/" --include "dinners-*.db.gz" 2>/dev/null | wc -l || echo 0)
-    log "Cloud backups: $CLOUD_COUNT files"
+    log "Cloud backups: $CLOUD_COUNT files (newest $KEEP_CLOUD_FILES kept)"
 fi
 log "=== Backup complete ==="

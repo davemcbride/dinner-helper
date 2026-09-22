@@ -128,7 +128,9 @@ A systemd user timer runs `scripts/backup.sh` nightly at 02:30:
 - snapshot of the live DB via SQLite's own `.backup` (safe while the server is
   running) plus an `integrity_check`,
 - gzipped to `/home/dmcbride/backups/dinner-helper/` - 15 days kept,
-- copied to the `dinner-helper-backup` bucket on Cloudflare R2 - 30 days kept.
+- copied to the `dinner-helper-backup` bucket on Cloudflare R2 - newest 3 files
+  kept (R2 lifecycle rules can only expire by age, so the count cap is in the
+  script).
 
 ```bash
 systemctl --user list-timers dinner-helper-backup.timer   # schedule

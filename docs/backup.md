@@ -25,7 +25,7 @@ way to lose it.
 3. Gzips it to `dinners-YYYYMMDD-HHMMSS.db.gz` (~16 KB for a 216-meal, 344-row
    database).
 4. Copies it to `r2:dinner-helper-backup/` with rclone.
-5. Rotates: 15 days locally, 30 days in R2.
+5. Rotates: 15 days locally, newest 3 files in R2.
 
 It follows the same shape as `home-lab/jellyfin/backup.sh` so both backups are
 operated the same way. There is no Docker here — the app is a plain systemd
@@ -50,6 +50,26 @@ The timer is enabled by the
 `~/.config/systemd/user/timers.target.wants/dinner-helper-backup.timer`
 symlink; `loginctl enable-linger dmcbride` (already set for
 `dinner-helper.service`) is what lets a user timer run with nobody logged in.
+
+### Cloud retention: newest 3 files
+
+R2 lifecycle rules can only expire objects by age or date. There is no "keep
+only the newest N objects" rule, and setting lifecycle rules at all requires a
+token with the `Workers R2 Storage Write` permission (bucket admin), not the
+object-scoped token rclone holds. So `prune_cloud()` in `scripts/backup.sh`
+enforces the cap client-side: list the bucket, keep the newest
+`KEEP_CLOUD_FILES` (3), delete the rest.
+
+- Retention is in **files, not days**: 3 daily files = 3 restore points. A
+  problem unnoticed for more than 3 days is only recoverable from the local
+  copy, which keeps 15 days.
+- The logic depends on filenames sorting chronologically
+  (`dinners-YYYYMMDD-HHMMSS.db.gz`); renaming backups would break it.
+- Change `KEEP_CLOUD_FILES` to keep more. There is no bucket-side setting.
+
+`home-lab/jellyfin/backup.sh` uses the same `prune_cloud()` shape with
+`KEEP_CLOUD_FILES=3` and a `jellyfin-config-*.tar.gz` glob, so both buckets
+obey the same cap.
 
 ## Setup record
 
@@ -143,12 +163,12 @@ with whatever the snapshot held, silently undoing anything done since.
   The Jellyfin script's `--progress` works, but the negation does not exist in
   this version; the script just omits it.
 - **The old `r2:jellyfin-backup` bucket is unrelated** — separate bucket, so
-  Jellyfin's 30-day cleanup (`--include "jellyfin-config-*.tar.gz"`) can never
-  touch these files, and vice versa.
+  Jellyfin's own cleanup (`--include "jellyfin-config-*.tar.gz"`, newest 3 kept)
+  can never touch these files, and vice versa.
 - **The script must not need the server stopped.** If a future change makes it
   reach for `data/*.db` directly instead of `.backup`, it will either fail or
   produce a torn copy while `uvicorn` is writing.
-- **Cost is negligible**: ~16 KB/day, so ~0.5 MB with 30 days retained
+- **Cost is negligible**: ~16 KB/day, so ~48 KB with 3 files retained
   (storage $0.015/GB/month, egress free).
 - Restore halts the app, so it is not a hot operation to run casually on a night
   someone is picking dinner.
