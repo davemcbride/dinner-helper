@@ -114,7 +114,29 @@ from zero.
   PIN), so the public URL is authenticated at the edge — see "Remote access
   from anywhere" above.
 - If you expose it some other way, put a PIN/proxy in front of it.
-- Data lives in `data/dinners.db` – back it up / copy it between machines.
+- Data lives in `data/dinners.db`. It is snapshotted nightly and copied off the
+  machine automatically - see "Backups" below.
+
+## Backups
+
+`data/dinners.db` holds every merge, alias, flag and logged dinner you've made
+in the app, so it is the one thing worth backing up (`clean_meals.json` can be
+rebuilt from `docs/dinner_list.md`, and the code is in git).
+
+A systemd user timer runs `scripts/backup.sh` nightly at 02:30:
+
+- snapshot of the live DB via SQLite's own `.backup` (safe while the server is
+  running) plus an `integrity_check`,
+- gzipped to `/home/dmcbride/backups/dinner-helper/` - 15 days kept,
+- copied to the `dinner-helper-backup` bucket on Cloudflare R2 - 30 days kept.
+
+```bash
+systemctl --user list-timers dinner-helper-backup.timer   # schedule
+systemctl --user start dinner-helper-backup.service       # back up now
+rclone lsl r2:dinner-helper-backup                        # cloud copies
+```
+
+Full runbook, including restore steps: `docs/backup.md`.
 
 ## Layout
 
@@ -122,7 +144,8 @@ from zero.
 app/            FastAPI backend (routes in main.py)
 app/db.py       SQLite schema + connection
 app/seed.py     builds data/dinners.db from the cleaned JSON
-scripts/        clean_list.py (one-time import)
+scripts/        clean_list.py (one-time import), backup.sh (nightly backup)
 data/           clean_meals.json + dinners.db (generated)
 static/         mobile UI (index.html, app.js, style.css) — no build step
+docs/           planning notes and the backup runbook (backup.md)
 ```

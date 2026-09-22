@@ -28,7 +28,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 `data/*.db` and `certs/` are git-ignored. When `docs/dinner_list.md` changes,
 re-run both steps. `--fresh` rebuilds from JSON only, discarding any merges or
-edits made in the app.
+edits made in the app; the nightly backup documented in `docs/backup.md` is the
+only way back from that.
 
 ## Architecture
 
@@ -40,6 +41,13 @@ edits made in the app.
 - `app/seed.py` — backfills history so stats are meaningful on day one; those
   rows are marked `note='seed'` and `POST /api/history/reset` deletes them.
 - `static/` — vanilla JS/HTML/CSS mobile UI served by FastAPI, no build step.
+- `scripts/backup.sh` — nightly DB backup. Runs from a systemd user timer
+  (`~/.config/systemd/user/dinner-helper-backup.{service,timer}`, 02:30), not
+  cron and not a container, because the app itself is a systemd user service.
+  Snapshots with `sqlite3 .backup` (never `cp` the live DB), keeps 15 days in
+  `/home/dmcbride/backups/dinner-helper/` and 30 days in
+  `r2:dinner-helper-backup` via the existing rclone `r2:` remote. Runbook and
+  restore steps: `docs/backup.md`.
 - `docs/` — `dinner_list.md` is the raw source list; `features/` and `ideas/`
   hold planning notes.
 
