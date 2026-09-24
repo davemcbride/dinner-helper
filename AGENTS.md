@@ -48,6 +48,9 @@ only way back from that.
   `/home/dmcbride/backups/dinner-helper/` and 30 days in
   `r2:dinner-helper-backup` via the existing rclone `r2:` remote. Runbook and
   restore steps: `docs/backup.md`.
+- `scripts/shift_plans.py` — moves every row in `plans` by a fixed number of
+  days (e.g. `-7` when a week was planned against the wrong dates). Dry-run by
+  default; pass `--apply` and it snapshots the DB first.
 - `docs/` — `dinner_list.md` is the raw source list; `features/` and `ideas/`
   hold planning notes.
 
