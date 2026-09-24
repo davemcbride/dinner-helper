@@ -600,7 +600,7 @@ function viewWeek() {
 
   main().replaceChildren(
     ...[
-      el("h1", {}, "Upcoming week"),
+      el("h1", {}, "Week plan"),
       nav,
       ...(state.weekStart !== startOfWeek()
         ? [el("button", {
