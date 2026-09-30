@@ -631,7 +631,7 @@ function viewWeek() {
         ? [el("button", {
             class: "btn btn-ghost week-back",
             onclick: () => backToThisWeek(),
-          }, "Back to this week")]
+          }, "Back to upcoming week")]
         : []),
       el("div", { class: "week-list" }, rows),
       section("How it works"),
