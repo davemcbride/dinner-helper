@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS plans (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     meal_id    INTEGER NOT NULL REFERENCES meals(id) ON DELETE CASCADE,
     planned_on TEXT NOT NULL,                 -- ISO date (YYYY-MM-DD)
+    slot       INTEGER NOT NULL DEFAULT 0,
     note       TEXT NOT NULL DEFAULT ''       -- for future 'eat out' / skip markers
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_plans_on  ON plans(planned_on);
 CREATE INDEX IF NOT EXISTS idx_plans_meal ON plans(meal_id);
 """
 
@@ -52,7 +52,15 @@ def _migrate(conn: sqlite3.Connection) -> None:
     cols = {r["name"] for r in conn.execute("PRAGMA table_info(meals)")}
     if "merge_hint" not in cols:
         conn.execute("ALTER TABLE meals ADD COLUMN merge_hint TEXT NOT NULL DEFAULT 'null'")
-        conn.commit()
+    plan_cols = {r["name"] for r in conn.execute("PRAGMA table_info(plans)")}
+    if "slot" not in plan_cols:
+        conn.execute("ALTER TABLE plans ADD COLUMN slot INTEGER NOT NULL DEFAULT 0")
+    conn.execute("DROP INDEX IF EXISTS idx_plans_on")
+    conn.execute(
+        "CREATE UNIQUE INDEX IF NOT EXISTS idx_plans_on_slot "
+        "ON plans(planned_on, slot)"
+    )
+    conn.commit()
 
 
 def dict_rows(rows) -> list[dict]:

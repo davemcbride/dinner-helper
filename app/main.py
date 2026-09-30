@@ -16,9 +16,9 @@ from datetime import date
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from . import db
 from .db import get_conn
@@ -27,6 +27,12 @@ ROOT = db.ROOT
 STATIC_DIR = ROOT / "static"
 
 app = FastAPI(title="Dinner Helper", version="0.1.0")
+
+
+@app.on_event("startup")
+def migrate_database():
+    conn = get_conn()
+    conn.close()
 
 
 # --- pydantic bodies -------------------------------------------------------
@@ -55,6 +61,7 @@ class PatchMealIn(BaseModel):
 
 class PlanIn(BaseModel):
     meal_id: int
+    slot: int = Field(default=0, ge=0, le=1)
 
 
 # --- helpers ---------------------------------------------------------------
@@ -404,19 +411,20 @@ def to_plan(row: sqlite3.Row) -> dict:
     plan = {
         "id": row["plan_id"],
         "planned_on": row["planned_on"],
+        "slot": row["slot"],
         "note": row["note"],
         "meal": to_meal(row),
     }
     return plan
 
 
-def get_plan(conn, planned_on: str) -> dict:
+def get_plan(conn, planned_on: str, slot: int) -> dict:
     row = conn.execute(
-        "SELECT p.id AS plan_id, p.planned_on, p.note, "
+        "SELECT p.id AS plan_id, p.planned_on, p.slot, p.note, "
         f"{MEAL_FIELDS} "
         "FROM plans p JOIN meals m ON m.id = p.meal_id "
-        "WHERE p.planned_on = ?",
-        (planned_on,),
+        "WHERE p.planned_on = ? AND p.slot = ?",
+        (planned_on, slot),
     ).fetchone()
     if row is None:
         raise HTTPException(status_code=404, detail="no plan for that date")
@@ -433,11 +441,11 @@ def list_plans(
     conn.row_factory = sqlite3.Row
     try:
         rows = conn.execute(
-            "SELECT p.id AS plan_id, p.planned_on, p.note, "
+            "SELECT p.id AS plan_id, p.planned_on, p.slot, p.note, "
             f"{MEAL_FIELDS} "
             "FROM plans p JOIN meals m ON m.id = p.meal_id "
             "WHERE p.planned_on BETWEEN ? AND ? "
-            "ORDER BY p.planned_on",
+            "ORDER BY p.planned_on, p.slot",
             (start, end),
         ).fetchall()
         return {"plans": [to_plan(r) for r in rows]}
@@ -447,29 +455,35 @@ def list_plans(
 
 @app.put("/api/plans/{planned_on}")
 def put_plan(planned_on: str, body: PlanIn):
-    """Assign a meal to a date (upsert)."""
+    """Assign a meal to a date slot (upsert)."""
     conn = sqlite3.connect(db.DB_PATH)
     conn.row_factory = sqlite3.Row
     try:
         get_meal(conn, body.meal_id)
         conn.execute(
-            "INSERT INTO plans (meal_id, planned_on) VALUES (?, ?) "
-            "ON CONFLICT(planned_on) DO UPDATE SET meal_id = excluded.meal_id, "
+            "INSERT INTO plans (meal_id, planned_on, slot) VALUES (?, ?, ?) "
+            "ON CONFLICT(planned_on, slot) DO UPDATE SET meal_id = excluded.meal_id, "
             "note = excluded.note",
-            (body.meal_id, planned_on),
+            (body.meal_id, planned_on, body.slot),
         )
         conn.commit()
-        return get_plan(conn, planned_on)
+        return get_plan(conn, planned_on, body.slot)
     finally:
         conn.close()
 
 
 @app.delete("/api/plans/{planned_on}")
-def delete_plan(planned_on: str):
-    """Clear the plan for a date."""
+def delete_plan(planned_on: str, slot: int | None = Query(None, ge=0, le=1)):
+    """Clear one slot, or all plans for a date when no slot is given."""
     conn = sqlite3.connect(db.DB_PATH)
     try:
-        n = conn.execute("DELETE FROM plans WHERE planned_on = ?", (planned_on,)).rowcount
+        if slot is None:
+            n = conn.execute("DELETE FROM plans WHERE planned_on = ?", (planned_on,)).rowcount
+        else:
+            n = conn.execute(
+                "DELETE FROM plans WHERE planned_on = ? AND slot = ?",
+                (planned_on, slot),
+            ).rowcount
         conn.commit()
     finally:
         conn.close()
@@ -479,7 +493,7 @@ def delete_plan(planned_on: str):
 
 
 @app.post("/api/plans/{planned_on}/confirm")
-def confirm_plan(planned_on: str):
+def confirm_plan(planned_on: str, slot: int = Query(0, ge=0, le=1)):
     """Log a planned meal as eaten (only once the day has arrived) and clear it."""
     if planned_on > date.today().isoformat():
         raise HTTPException(status_code=400, detail="can't confirm a meal before its day")
@@ -487,8 +501,8 @@ def confirm_plan(planned_on: str):
     conn.row_factory = sqlite3.Row
     try:
         row = conn.execute(
-            "SELECT id, meal_id, note FROM plans WHERE planned_on = ?",
-            (planned_on,),
+            "SELECT id, meal_id, note FROM plans WHERE planned_on = ? AND slot = ?",
+            (planned_on, slot),
         ).fetchone()
         if row is None:
             raise HTTPException(status_code=404, detail="no plan for that date")
@@ -514,7 +528,16 @@ def confirm_plan(planned_on: str):
 
 @app.get("/")
 def index():
-    return FileResponse(STATIC_DIR / "index.html")
+    html = (STATIC_DIR / "index.html").read_text()
+    v = int(max(
+        (STATIC_DIR / "app.js").stat().st_mtime,
+        (STATIC_DIR / "style.css").stat().st_mtime,
+    ))
+    html = html.replace("/static/style.css", f"/static/style.css?v={v}")
+    html = html.replace("/static/app.js", f"/static/app.js?v={v}")
+    response = HTMLResponse(html)
+    response.headers["Cache-Control"] = "no-cache"
+    return response
 
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")

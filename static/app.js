@@ -560,26 +560,48 @@ function viewWeek() {
   const today = todayIso();
 
   const rows = weekRange(state.weekStart).map((day) => {
-    const plan = state.plans.find((p) => p.planned_on === day);
-    const confirmButton = plan && canConfirm(day)
+    const dayPlans = state.plans
+      .filter((p) => p.planned_on === day)
+      .map((p) => ({ ...p, slot: p.slot ?? 0 }))
+      .sort((a, b) => a.slot - b.slot);
+    const slots = dayPlans.length
+      ? dayPlans.map((plan) => {
+          const slot = plan.slot;
+          return el("div", { class: "week-meal-row" }, [
+            el("button", {
+              class: "week-meal",
+              onclick: () => openWeekSheet(day, slot),
+            }, plan.meal.name),
+            canConfirm(day)
+              ? el("button", {
+                  class: "btn btn-sage week-confirm",
+                  onclick: async () => {
+                    if (!confirm(`Log ${plan.meal.name} as eaten for ${weekdayName(day)}?`)) return;
+                    await confirmPlan(plan);
+                  },
+                }, "We had this")
+              : null,
+          ]);
+        })
+      : [el("button", {
+          class: "week-meal empty",
+          onclick: () => openWeekSheet(day, 0),
+        }, "Tap to plan")];
+    const addMeal = dayPlans.length === 1
       ? el("button", {
-          class: "btn btn-sage week-confirm",
-          onclick: async () => {
-            if (!confirm(`Log ${plan.meal.name} as eaten for ${weekdayName(day)}?`)) return;
-            await confirmPlan(day);
-          },
-        }, "We had this")
+          class: "week-add-meal",
+          "aria-label": `Add another meal for ${fmtDay(day)}`,
+          title: "Add another meal",
+          onclick: () => openWeekSheet(day, dayPlans[0].slot === 0 ? 1 : 0),
+        }, "+ Add meal")
       : null;
     return el("div", { class: "week-row" + (day === today ? " today" : "") }, [
-      el("button", { class: "week-day", onclick: () => openWeekSheet(day) }, [
-        el("div", { class: "week-dow" }, [
-          weekdayName(day) + " ",
-          el("span", { class: "week-date" }, shortDate(day)),
-        ]),
-        el("div", { class: "week-meal" + (plan ? "" : " empty") },
-          plan ? plan.meal.name : "Tap to plan"),
+      el("div", { class: "week-dow" }, [
+        weekdayName(day) + " ",
+        el("span", { class: "week-date" }, shortDate(day)),
       ]),
-      confirmButton,
+      ...slots,
+      addMeal,
     ]);
   });
 
@@ -611,7 +633,7 @@ function viewWeek() {
       el("div", { class: "week-list" }, rows),
       section("How it works"),
       el("p", { style: "color:var(--muted);font-size:14px;line-height:1.5" },
-        "Plan the week ahead, Friday to Thursday. Tap a day to assign a meal. " +
+        "Plan the week ahead, Friday to Thursday. Tap a day to assign a meal, or use + to add a second. " +
         "Nothing counts as eaten until you confirm it here."),
     ].filter(Boolean)
   );
@@ -619,8 +641,8 @@ function viewWeek() {
 
 function fmtDay(iso) { return `${weekdayName(iso)} ${shortDate(iso)}`; }
 
-function openWeekSheet(day) {
-  const plan = state.plans.find((p) => p.planned_on === day);
+function openWeekSheet(day, slot = 0) {
+  const plan = state.plans.find((p) => p.planned_on === day && p.slot === slot);
   const meal = plan ? plan.meal : null;
   const input = el("input", {
     class: "input",
@@ -651,7 +673,7 @@ function openWeekSheet(day) {
           class: "btn btn-sage",
           onclick: async () => {
             if (!confirm(`Log ${meal.name} as eaten for ${fmtDay(day)}?`)) return;
-            await confirmPlan(day);
+            await confirmPlan(plan);
           },
         }, "We had this ✓"),
       ])]
@@ -660,7 +682,9 @@ function openWeekSheet(day) {
   openSheet(el("div", {}, [
     el("div", { class: "sheet-title" }, fmtDay(day)),
     el("p", { class: "meta" },
-      meal ? `Currently: ${meal.name}${canConfirm(day) ? " — ready to confirm" : ""}` : "Nothing planned yet"),
+      meal
+        ? `Currently: ${meal.name}${canConfirm(day) ? " — ready to confirm" : ""}`
+        : slot === 1 ? "Add a second meal" : "Nothing planned yet"),
     section("Suggest one"),
     el("p", { class: "meta", style: "margin:0 0 10px" }, "Already-planned meals are left out."),
     el("div", { class: "btn-row", style: "gap:8px;flex-wrap:wrap" }, [
@@ -669,7 +693,7 @@ function openWeekSheet(day) {
         class: "btn btn-ghost",
         onclick: async () => {
           const plannedIds = state.plans
-            .filter((p) => p.planned_on !== day)
+            .filter((p) => p.planned_on !== day || p.slot !== slot)
             .map((p) => p.meal.id);
           try {
             const data = await api(`/api/pick?mode=${mode}&count=1&exclude=${plannedIds.join(",")}`);
@@ -690,7 +714,10 @@ function openWeekSheet(day) {
         onclick: async () => {
           const target = state.meals.find((x) => x.name === input.value.trim());
           if (!target) return toast("Pick a meal from the list", true);
-          await api(`/api/plans/${day}`, { method: "PUT", body: { meal_id: target.id } });
+          await api(`/api/plans/${day}`, {
+            method: "PUT",
+            body: { meal_id: target.id, slot },
+          });
           closeSheet();
           toast(`${target.name} planned for ${fmtDay(day)}`);
           await refresh();
@@ -700,7 +727,7 @@ function openWeekSheet(day) {
         ? el("button", {
             class: "btn btn-danger-ghost",
             onclick: async () => {
-              await api(`/api/plans/${day}`, { method: "DELETE" });
+              await api(`/api/plans/${day}?slot=${slot}`, { method: "DELETE" });
               closeSheet();
               toast(`Cleared ${fmtDay(day)}`);
               await refresh();
@@ -711,10 +738,9 @@ function openWeekSheet(day) {
   ]));
 }
 
-async function confirmPlan(day) {
-  const plan = state.plans.find((p) => p.planned_on === day);
+async function confirmPlan(plan) {
   try {
-    await api(`/api/plans/${day}/confirm`, { method: "POST" });
+    await api(`/api/plans/${plan.planned_on}/confirm?slot=${plan.slot}`, { method: "POST" });
     toast(`Confirmed — ${plan.meal.name} logged`);
     await refresh();
   } catch (e) {
