@@ -567,20 +567,23 @@ function viewWeek() {
     const slots = dayPlans.length
       ? dayPlans.map((plan) => {
           const slot = plan.slot;
+          const confirmed = plan.confirmed;
           return el("div", { class: "week-meal-row" }, [
             el("button", {
-              class: "week-meal",
+              class: "week-meal" + (confirmed ? " is-confirmed" : ""),
               onclick: () => openWeekSheet(day, slot),
-            }, plan.meal.name),
-            canConfirm(day)
-              ? el("button", {
-                  class: "btn btn-sage week-confirm",
-                  onclick: async () => {
-                    if (!confirm(`Log ${plan.meal.name} as eaten for ${weekdayName(day)}?`)) return;
-                    await confirmPlan(plan);
-                  },
-                }, "We had this")
-              : null,
+            }, confirmed ? `${plan.meal.name} ✓` : plan.meal.name),
+            confirmed
+              ? el("span", { class: "week-confirmed" }, "eaten")
+              : canConfirm(day)
+                ? el("button", {
+                    class: "btn btn-sage week-confirm",
+                    onclick: async () => {
+                      if (!confirm(`Log ${plan.meal.name} as eaten for ${weekdayName(day)}?`)) return;
+                      await confirmPlan(plan);
+                    },
+                  }, "We had this")
+                : null,
           ]);
         })
       : [el("button", {
@@ -667,7 +670,7 @@ function openWeekSheet(day, slot = 0) {
     }, label))
   );
 
-  const actions = meal && canConfirm(day)
+  const actions = meal && canConfirm(day) && !plan.confirmed
     ? [el("div", { class: "btn-row" }, [
         el("button", {
           class: "btn btn-sage",
@@ -683,7 +686,7 @@ function openWeekSheet(day, slot = 0) {
     el("div", { class: "sheet-title" }, fmtDay(day)),
     el("p", { class: "meta" },
       meal
-        ? `Currently: ${meal.name}${canConfirm(day) ? " — ready to confirm" : ""}`
+        ? `Currently: ${meal.name}${plan && plan.confirmed ? " — eaten ✓" : canConfirm(day) ? " — ready to confirm" : ""}`
         : slot === 1 ? "Add a second meal" : "Nothing planned yet"),
     section("Suggest one"),
     el("p", { class: "meta", style: "margin:0 0 10px" }, "Already-planned meals are left out."),

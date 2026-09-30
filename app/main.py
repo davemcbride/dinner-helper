@@ -412,6 +412,7 @@ def to_plan(row: sqlite3.Row) -> dict:
         "id": row["plan_id"],
         "planned_on": row["planned_on"],
         "slot": row["slot"],
+        "confirmed": bool(row["confirmed"]),
         "note": row["note"],
         "meal": to_meal(row),
     }
@@ -420,7 +421,7 @@ def to_plan(row: sqlite3.Row) -> dict:
 
 def get_plan(conn, planned_on: str, slot: int) -> dict:
     row = conn.execute(
-        "SELECT p.id AS plan_id, p.planned_on, p.slot, p.note, "
+        "SELECT p.id AS plan_id, p.planned_on, p.slot, p.confirmed, p.note, "
         f"{MEAL_FIELDS} "
         "FROM plans p JOIN meals m ON m.id = p.meal_id "
         "WHERE p.planned_on = ? AND p.slot = ?",
@@ -441,7 +442,7 @@ def list_plans(
     conn.row_factory = sqlite3.Row
     try:
         rows = conn.execute(
-            "SELECT p.id AS plan_id, p.planned_on, p.slot, p.note, "
+            "SELECT p.id AS plan_id, p.planned_on, p.slot, p.confirmed, p.note, "
             f"{MEAL_FIELDS} "
             "FROM plans p JOIN meals m ON m.id = p.meal_id "
             "WHERE p.planned_on BETWEEN ? AND ? "
@@ -463,7 +464,7 @@ def put_plan(planned_on: str, body: PlanIn):
         conn.execute(
             "INSERT INTO plans (meal_id, planned_on, slot) VALUES (?, ?, ?) "
             "ON CONFLICT(planned_on, slot) DO UPDATE SET meal_id = excluded.meal_id, "
-            "note = excluded.note",
+            "note = excluded.note, confirmed = 0",
             (body.meal_id, planned_on, body.slot),
         )
         conn.commit()
@@ -494,24 +495,27 @@ def delete_plan(planned_on: str, slot: int | None = Query(None, ge=0, le=1)):
 
 @app.post("/api/plans/{planned_on}/confirm")
 def confirm_plan(planned_on: str, slot: int = Query(0, ge=0, le=1)):
-    """Log a planned meal as eaten (only once the day has arrived) and clear it."""
+    """Log a planned meal as eaten (only once the day has arrived) and mark it
+    confirmed in the week so it stays visible but can't be logged twice."""
     if planned_on > date.today().isoformat():
         raise HTTPException(status_code=400, detail="can't confirm a meal before its day")
     conn = sqlite3.connect(db.DB_PATH)
     conn.row_factory = sqlite3.Row
     try:
         row = conn.execute(
-            "SELECT id, meal_id, note FROM plans WHERE planned_on = ? AND slot = ?",
+            "SELECT id, meal_id, note, confirmed FROM plans WHERE planned_on = ? AND slot = ?",
             (planned_on, slot),
         ).fetchone()
         if row is None:
             raise HTTPException(status_code=404, detail="no plan for that date")
+        if row["confirmed"]:
+            raise HTTPException(status_code=409, detail="already confirmed")
         with conn:
             cur = conn.execute(
                 "INSERT INTO history (meal_id, served_on, note) VALUES (?, ?, ?)",
                 (row["meal_id"], planned_on, row["note"] or ""),
             )
-            conn.execute("DELETE FROM plans WHERE id = ?", (row["id"],))
+            conn.execute("UPDATE plans SET confirmed = 1 WHERE id = ?", (row["id"],))
         item = {
             "id": cur.lastrowid,
             "meal_id": row["meal_id"],

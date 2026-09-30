@@ -47,7 +47,7 @@ def main() -> None:
     conn.row_factory = sqlite3.Row
     try:
         rows = conn.execute(
-            "SELECT p.id, p.meal_id, p.planned_on, p.note, m.name "
+            "SELECT p.id, p.meal_id, p.planned_on, p.slot, p.confirmed, p.note, m.name "
             "FROM plans p JOIN meals m ON m.id = p.meal_id "
             "ORDER BY p.planned_on"
         ).fetchall()
@@ -57,11 +57,11 @@ def main() -> None:
 
         moved = [
             (r["id"], r["meal_id"], shift_day(r["planned_on"], args.days),
-             r["note"], r["planned_on"], r["name"])
+             r["note"], r["slot"], r["confirmed"], r["planned_on"], r["name"])
             for r in rows
         ]
 
-        for _, _, dst, _, src, name in moved:
+        for _, _, dst, _, _, _, src, name in moved:
             print(f"  {src} -> {dst}  {name}")
         print(f"\n{len(moved)} plan(s) would shift by {args.days:+d} day(s).")
 
@@ -79,8 +79,10 @@ def main() -> None:
         with conn:
             conn.execute("DELETE FROM plans")
             conn.executemany(
-                "INSERT INTO plans (id, meal_id, planned_on, note) VALUES (?, ?, ?, ?)",
-                [(pid, meal_id, dst, note) for pid, meal_id, dst, note, _, _ in moved],
+                "INSERT INTO plans (id, meal_id, planned_on, note, slot, confirmed) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                [(pid, meal_id, dst, note, slot, confirmed)
+                 for pid, meal_id, dst, note, slot, confirmed, _, _ in moved],
             )
 
         print(f"Backed up to {backup}")

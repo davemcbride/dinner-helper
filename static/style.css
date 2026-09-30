@@ -323,6 +323,14 @@ p { margin: 0 0 8px; }
   padding: 0 13px;
   font-size: 13px;
 }
+.week-confirmed {
+  flex-shrink: 0;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sage);
+}
+.week-meal.is-confirmed { color: var(--sage); }
 .week-add-meal {
   align-self: flex-start;
   margin: 0 0 10px 12px;
