@@ -649,12 +649,47 @@ function openWeekSheet(day, slot = 0) {
   const meal = plan ? plan.meal : null;
   const input = el("input", {
     class: "input",
-    list: "week-meals",
     placeholder: "Search meals…",
     value: meal ? meal.name : "",
+    autocomplete: "off",
+    autocapitalize: "none",
+    spellcheck: "false",
+    role: "combobox",
+    "aria-autocomplete": "list",
+    "aria-expanded": "false",
+    "aria-controls": "week-meal-suggestions",
   });
-  const targets = el("datalist", { id: "week-meals" },
-    state.meals.map((x) => el("option", { value: x.name })));
+  const suggestions = el("div", {
+    class: "meal-suggestions",
+    id: "week-meal-suggestions",
+    role: "listbox",
+    hidden: "",
+  });
+  const renderSuggestions = () => {
+    const query = input.value.trim().toLocaleLowerCase();
+    const matches = query
+      ? state.meals.filter((x) => x.name.toLocaleLowerCase().includes(query)).slice(0, 5)
+      : [];
+    suggestions.replaceChildren(...matches.map((target) => el("button", {
+      class: "meal-suggestion",
+      type: "button",
+      role: "option",
+      onpointerdown: (e) => {
+        e.preventDefault();
+        input.value = target.name;
+        renderSuggestions();
+      },
+      onclick: () => {
+        input.value = target.name;
+        renderSuggestions();
+      },
+    }, target.name)));
+    suggestions.hidden = matches.length === 0;
+    input.setAttribute("aria-expanded", matches.length ? "true" : "false");
+  };
+  input.addEventListener("input", renderSuggestions);
+  input.addEventListener("focus", renderSuggestions);
+  const mealSearch = el("div", { class: "meal-autocomplete" }, [input, suggestions]);
 
   let mode = state.pickMode;
   const seg = el("div", { class: "seg", role: "group" });
@@ -709,8 +744,7 @@ function openWeekSheet(day, slot = 0) {
     ]),
     ...actions,
     section("Pick a meal"),
-    input,
-    targets,
+    mealSearch,
     el("div", { class: "btn-row" }, [
       el("button", {
         class: "btn btn-ghost",

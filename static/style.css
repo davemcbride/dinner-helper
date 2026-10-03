@@ -382,6 +382,34 @@ p { margin: 0 0 8px; }
   margin: 8px 0 14px;
 }
 .input:focus { border-color: var(--brand); }
+.meal-autocomplete { position: relative; margin: 8px 0 14px; }
+.meal-autocomplete .input { margin: 0; }
+.meal-suggestions {
+  position: absolute;
+  z-index: 2;
+  bottom: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  box-shadow: var(--shadow);
+}
+.meal-suggestions[hidden] { display: none; }
+.meal-suggestion {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 14px;
+  overflow: hidden;
+  background: #fffdf9;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.meal-suggestion + .meal-suggestion { border-top: 1px solid var(--line); }
+.meal-suggestion:active { background: #f4eadf; }
 
 /* ---------- toast ---------- */
 .toast {
