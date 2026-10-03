@@ -713,6 +713,10 @@ function openWeekSheet(day, slot = 0) {
     targets,
     el("div", { class: "btn-row" }, [
       el("button", {
+        class: "btn btn-ghost",
+        onclick: () => addAndPlan(input.value, day, slot),
+      }, "Add & plan"),
+      el("button", {
         class: "btn btn-primary",
         onclick: async () => {
           const target = state.meals.find((x) => x.name === input.value.trim());
@@ -739,6 +743,28 @@ function openWeekSheet(day, slot = 0) {
         : null,
     ]),
   ]));
+}
+
+async function addAndPlan(name, day, slot) {
+  name = name.trim();
+  if (!name) return toast("Enter a meal name first", true);
+
+  let meal;
+  try {
+    meal = await api("/api/meals", { method: "POST", body: { name } });
+    await api(`/api/plans/${day}`, { method: "PUT", body: { meal_id: meal.id, slot } });
+  } catch (e) {
+    toast(meal ? `Added ${meal.name}, but couldn't plan it: ${e.message}` : e.message, true);
+    return;
+  }
+
+  closeSheet();
+  toast(`Added ${meal.name} and planned it for ${fmtDay(day)}`);
+  try {
+    await refresh();
+  } catch (e) {
+    toast(`Planned ${meal.name}, but couldn't refresh: ${e.message}`, true);
+  }
 }
 
 async function confirmPlan(plan) {
