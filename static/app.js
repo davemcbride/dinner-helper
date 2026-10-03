@@ -531,8 +531,8 @@ function isoAdd(isoStr, days) {
 function startOfWeek() {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const dow = (today.getDay() + 6) % 7;       // 0=Mon … 6=Sun
-  return isoAdd(iso(today), (4 - dow + 7) % 7); // the next Friday on/after today
+  const daysSinceFriday = (today.getDay() + 2) % 7;
+  return isoAdd(iso(today), -daysSinceFriday);
 }
 
 const weekRange = (start) => Array.from({ length: 7 }, (_, i) => isoAdd(start, i));
@@ -631,7 +631,7 @@ function viewWeek() {
         ? [el("button", {
             class: "btn btn-ghost week-back",
             onclick: () => backToThisWeek(),
-          }, "Back to upcoming week")]
+          }, "Back to this week")]
         : []),
       el("div", { class: "week-list" }, rows),
       section("How it works"),
