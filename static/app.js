@@ -447,6 +447,11 @@ function openMealSheet(id) {
       }, "Log for today"),
     ]),
     section("Manage"),
+    el("button", {
+      class: "btn btn-ghost btn-block",
+      style: "margin-bottom:10px",
+      onclick: () => editMealPrompt(m),
+    }, "Edit name"),
     el("div", { class: "btn-row" }, [
       el("button", { class: "btn btn-ghost", onclick: () => mergePrompt(m) }, "Merge into…"),
       el("button", {
@@ -461,6 +466,38 @@ function openMealSheet(id) {
       }, "Delete"),
     ]),
   ]));
+}
+
+function editMealPrompt(m) {
+  const input = el("input", {
+    class: "input",
+    value: m.name,
+    "aria-label": "Meal name",
+  });
+  const save = async () => {
+    const name = input.value.trim();
+    if (!name) return toast("name required", true);
+    try {
+      await api(`/api/meals/${m.id}`, { method: "PATCH", body: { name } });
+      closeSheet();
+      toast(`Renamed to ${name}`);
+      await refresh();
+    } catch (e) {
+      toast(e.message, true);
+    }
+  };
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") save();
+  });
+
+  openSheet(el("div", {}, [
+    el("div", { class: "sheet-title" }, "Edit meal name"),
+    input,
+    el("div", { class: "btn-row" }, [
+      el("button", { class: "btn btn-primary", onclick: save }, "Save name"),
+    ]),
+  ]));
+  input.focus();
 }
 
 function openAddSheet() {
