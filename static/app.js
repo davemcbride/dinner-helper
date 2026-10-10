@@ -63,6 +63,7 @@ const state = {
   duplicates: [],     // enabled meals with a suggested merge target
   recent: [],
   plans: [],          // planned meals for the visible week
+  notes: [],          // free-text notes for the visible week
   weekStart: null,    // ISO date of the Friday starting the visible week
   pickMode: "rare",
   currentPick: null,
@@ -577,8 +578,12 @@ const canConfirm = (iso) => iso <= todayIso();
 
 async function loadPlans() {
   const end = isoAdd(state.weekStart, 6);
-  const data = await api(`/api/plans?start=${state.weekStart}&end=${end}`);
-  state.plans = data.plans;
+  const [plans, notes] = await Promise.all([
+    api(`/api/plans?start=${state.weekStart}&end=${end}`),
+    api(`/api/notes?start=${state.weekStart}&end=${end}`),
+  ]);
+  state.plans = plans.plans;
+  state.notes = notes.notes;
   render();
 }
 
@@ -627,6 +632,7 @@ function viewWeek() {
           class: "week-meal empty",
           onclick: () => openWeekSheet(day, 0),
         }, "Tap to plan")];
+    const note = state.notes.find((item) => item.day === day);
     const addMeal = dayPlans.length === 1
       ? el("button", {
           class: "week-add-meal",
@@ -635,13 +641,22 @@ function viewWeek() {
           onclick: () => openWeekSheet(day, dayPlans[0].slot === 0 ? 1 : 0),
         }, "+ Add meal")
       : null;
+    const canAddNote = day >= isoAdd(today, -30);
     return el("div", { class: "week-row" + (day === today ? " today" : "") }, [
       el("div", { class: "week-dow" }, [
         weekdayName(day) + " ",
         el("span", { class: "week-date" }, shortDate(day)),
       ]),
       ...slots,
-      addMeal,
+      note ? el("div", { class: "week-note" }, note.text) : null,
+      canAddNote ? el("div", { class: "week-row-actions" }, [
+        addMeal,
+        el("button", {
+          class: "week-add-notes",
+          "aria-label": `${note ? "Edit" : "Add"} notes for ${fmtDay(day)}`,
+          onclick: () => openDayNoteSheet(day),
+        }, note ? "Edit notes" : "+ Add notes"),
+      ].filter(Boolean)) : addMeal,
     ]);
   });
 
@@ -674,12 +689,64 @@ function viewWeek() {
       section("How it works"),
       el("p", { style: "color:var(--muted);font-size:14px;line-height:1.5" },
         "Plan the week ahead, Friday to Thursday. Tap a day to assign a meal, or use + to add a second. " +
+        "Add notes for anything else; notes are kept for 30 days after their date. " +
         "Nothing counts as eaten until you confirm it here."),
     ].filter(Boolean)
   );
 }
 
 function fmtDay(iso) { return `${weekdayName(iso)} ${shortDate(iso)}`; }
+
+function openDayNoteSheet(day) {
+  const note = state.notes.find((item) => item.day === day);
+  const input = el("textarea", {
+    class: "input day-note-input",
+    rows: 5,
+    placeholder: "Write a note for this day…",
+    "aria-label": `Notes for ${fmtDay(day)}`,
+  });
+  input.value = note ? note.text : "";
+
+  openSheet(el("div", {}, [
+    el("div", { class: "sheet-title" }, `Notes for ${fmtDay(day)}`),
+    el("p", { class: "meta" }, "Notes are separate from meals and are kept for 30 days after their date."),
+    input,
+    el("div", { class: "btn-row" }, [
+      el("button", {
+        class: "btn btn-notes",
+        onclick: async () => {
+          try {
+            const result = await api(`/api/notes/${day}`, {
+              method: "PUT",
+              body: { text: input.value },
+            });
+            state.notes = state.notes.filter((item) => item.day !== day);
+            if (result.note) state.notes.push(result.note);
+            closeSheet();
+            render();
+            toast(result.note ? "Notes saved" : "Notes cleared");
+          } catch (e) {
+            toast(e.message, true);
+          }
+        },
+      }, "Save notes"),
+      note ? el("button", {
+        class: "btn btn-danger-ghost",
+        onclick: async () => {
+          try {
+            await api(`/api/notes/${day}`, { method: "DELETE" });
+            state.notes = state.notes.filter((item) => item.day !== day);
+            closeSheet();
+            render();
+            toast("Notes deleted");
+          } catch (e) {
+            toast(e.message, true);
+          }
+        },
+      }, "Delete") : null,
+    ]),
+  ]));
+}
 
 function openWeekSheet(day, slot = 0) {
   const plan = state.plans.find((p) => p.planned_on === day && p.slot === slot);
@@ -874,18 +941,20 @@ function relDate(iso) {
 async function refresh(keepTab = true) {
   if (!state.weekStart) state.weekStart = startOfWeek();
   const weekEnd = isoAdd(state.weekStart, 6);
-  const [meals, review, dups, recent, plans] = await Promise.all([
+  const [meals, review, dups, recent, plans, notes] = await Promise.all([
     api("/api/meals?filter=all"),
     api("/api/meals?filter=flagged"),
     api("/api/meals?filter=duplicates"),
     api("/api/history/recent?limit=20"),
     api(`/api/plans?start=${state.weekStart}&end=${weekEnd}`),
+    api(`/api/notes?start=${state.weekStart}&end=${weekEnd}`),
   ]);
   state.meals = meals.meals.filter((m) => !m.flagged);
   state.review = review.meals;
   state.duplicates = dups.meals;
   state.recent = recent.entries;
   state.plans = plans.plans;
+  state.notes = notes.notes;
 
   if (state.currentPick && !state.meals.some((m) => m.id === state.currentPick.id))
     state.currentPick = null;

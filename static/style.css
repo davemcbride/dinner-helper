@@ -344,6 +344,48 @@ p { margin: 0 0 8px; }
   font-size: 14px;
   font-weight: 700;
 }
+.week-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px 10px;
+}
+.week-row-actions .week-add-meal { margin: 0; }
+.week-add-notes {
+  align-self: flex-start;
+  width: auto;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #42738a;
+  border-radius: 12px;
+  color: #315d70;
+  background: #edf6f8;
+  font-size: 14px;
+  font-weight: 700;
+}
+.week-add-notes:active { background: #dcecf0; }
+.week-note {
+  margin: 0 16px 10px;
+  padding: 10px 12px;
+  border-left: 3px solid #6d9caf;
+  border-radius: 0 8px 8px 0;
+  background: #f1f7f8;
+  color: #315d70;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.day-note-input {
+  display: block;
+  width: 100%;
+  min-height: 130px;
+  resize: vertical;
+  font: inherit;
+  line-height: 1.45;
+}
+.btn-notes { background: #42738a; color: #fff; }
+.btn-notes:active { background: #315d70; transform: scale(0.985); }
 
 /* ---------- sheet ---------- */
 .sheet { display: none; position: fixed; inset: 0; z-index: 50; }

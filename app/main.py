@@ -12,7 +12,7 @@ import argparse
 import json
 import sqlite3
 import random
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
@@ -32,6 +32,7 @@ app = FastAPI(title="Dinner Helper", version="0.1.0")
 @app.on_event("startup")
 def migrate_database():
     conn = get_conn()
+    prune_old_day_notes(conn)
     conn.close()
 
 
@@ -64,7 +65,18 @@ class PlanIn(BaseModel):
     slot: int = Field(default=0, ge=0, le=1)
 
 
+class DayNoteIn(BaseModel):
+    text: str
+
+
 # --- helpers ---------------------------------------------------------------
+
+
+def prune_old_day_notes(conn):
+    cutoff = (date.today() - timedelta(days=30)).isoformat()
+    conn.execute("DELETE FROM day_notes WHERE day < ?", (cutoff,))
+    conn.commit()
+
 
 MEAL_FIELDS = """
 m.id, m.name, m.aliases, m.enabled, m.flagged, m.flag_reasons, m.merge_hint,
@@ -523,6 +535,65 @@ def confirm_plan(planned_on: str, slot: int = Query(0, ge=0, le=1)):
             "note": row["note"],
         }
         return {"logged": item, "meal": get_meal(conn, row["meal_id"])}
+    finally:
+        conn.close()
+
+
+@app.get("/api/notes")
+def list_day_notes(
+    start: date = Query(..., description="ISO date, inclusive"),
+    end: date = Query(..., description="ISO date, inclusive"),
+):
+    """Notes for days within [start, end], excluding expired notes."""
+    conn = get_conn()
+    try:
+        prune_old_day_notes(conn)
+        rows = conn.execute(
+            "SELECT day, text FROM day_notes WHERE day BETWEEN ? AND ? ORDER BY day",
+            (start.isoformat(), end.isoformat()),
+        ).fetchall()
+        return {"notes": [dict(row) for row in rows]}
+    finally:
+        conn.close()
+
+
+@app.put("/api/notes/{day}")
+def put_day_note(day: date, body: DayNoteIn):
+    """Save or clear the free-text note for one date."""
+    day = day.isoformat()
+    cutoff = (date.today() - timedelta(days=30)).isoformat()
+    if day < cutoff:
+        raise HTTPException(status_code=410, detail="notes older than 30 days have expired")
+
+    conn = get_conn()
+    try:
+        prune_old_day_notes(conn)
+        if body.text.strip():
+            conn.execute(
+                "INSERT INTO day_notes (day, text) VALUES (?, ?) "
+                "ON CONFLICT(day) DO UPDATE SET text = excluded.text",
+                (day, body.text),
+            )
+        else:
+            conn.execute("DELETE FROM day_notes WHERE day = ?", (day,))
+        conn.commit()
+        row = conn.execute(
+            "SELECT day, text FROM day_notes WHERE day = ?", (day,)
+        ).fetchone()
+        return {"note": dict(row) if row else None}
+    finally:
+        conn.close()
+
+
+@app.delete("/api/notes/{day}")
+def delete_day_note(day: date):
+    """Delete the note for one date, if present."""
+    conn = get_conn()
+    try:
+        prune_old_day_notes(conn)
+        conn.execute("DELETE FROM day_notes WHERE day = ?", (day.isoformat(),))
+        conn.commit()
+        return {"ok": True}
     finally:
         conn.close()
 

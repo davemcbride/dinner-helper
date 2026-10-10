@@ -35,6 +35,11 @@ CREATE TABLE IF NOT EXISTS plans (
     note       TEXT NOT NULL DEFAULT ''       -- for future 'eat out' / skip markers
 );
 CREATE INDEX IF NOT EXISTS idx_plans_meal ON plans(meal_id);
+
+CREATE TABLE IF NOT EXISTS day_notes (
+    day  TEXT PRIMARY KEY,                 -- ISO date (YYYY-MM-DD)
+    text TEXT NOT NULL
+);
 """
 
 
