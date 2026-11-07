@@ -149,5 +149,5 @@ app/seed.py     builds data/dinners.db from the cleaned JSON
 scripts/        clean_list.py (one-time import), backup.sh (nightly backup)
 data/           clean_meals.json + dinners.db (generated)
 static/         mobile UI (index.html, app.js, style.css) — no build step
-docs/           planning notes and the backup runbook (backup.md)
+docs/           planning notes and runbooks (backup.md, python-upgrade-venv.md)
 ```
